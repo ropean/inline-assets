@@ -1,8 +1,8 @@
 /**
- * Example: Integrating vite-plugin-inline with Webpack
+ * Example: Integrating @ropean/inline-assets with Webpack
  */
 
-const { inlineAssets } = require('vite-plugin-inline');
+const { inlineAssets } = require('@ropean/inline-assets');
 
 module.exports = {
   // ... your webpack config

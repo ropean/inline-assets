@@ -1,6 +1,6 @@
 /**
- * Example: Using vite-plugin-inline with npm scripts
- *
+ * Example: Using @ropean/inline-assets with npm scripts
+ * 
  * Add to package.json:
  * {
  *   "scripts": {
@@ -10,7 +10,7 @@
  * }
  */
 
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 async function main() {
   console.log('Starting asset inlining...');

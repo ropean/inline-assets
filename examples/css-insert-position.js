@@ -4,8 +4,8 @@
  * This example demonstrates the different CSS insertion strategies
  */
 
-import viteInlineAssets from 'vite-plugin-inline';
-import { inlineAssets } from 'vite-plugin-inline';
+import inlineAssets from '@ropean/inline-assets';
+import { inlineAssets as inlineAssetsFunc } from '@ropean/inline-assets';
 
 // ============================================================================
 // As Vite Plugin
@@ -15,7 +15,7 @@ import { inlineAssets } from 'vite-plugin-inline';
 // This preserves the order - if CSS <link> is before JS <script>, it stays that way
 export const config1 = {
   plugins: [
-    viteInlineAssets({
+    inlineAssets({
       cssInsertPosition: 'original', // Default
     }),
   ],
@@ -25,7 +25,7 @@ export const config1 = {
 // Best for performance - CSS loads first
 export const config2 = {
   plugins: [
-    viteInlineAssets({
+    inlineAssets({
       cssInsertPosition: 'head-start',
     }),
   ],
@@ -35,7 +35,7 @@ export const config2 = {
 // Useful if you want other head elements to load first
 export const config3 = {
   plugins: [
-    viteInlineAssets({
+    inlineAssets({
       cssInsertPosition: 'head-end',
     }),
   ],
@@ -47,7 +47,7 @@ export const config3 = {
 
 // Example 1: Original position (preserves order)
 async function example1() {
-  await inlineAssets({
+  await inlineAssetsFunc({
     htmlPath: './dist/index.html',
     cssInsertPosition: 'original',
   });
@@ -55,7 +55,7 @@ async function example1() {
 
 // Example 2: Performance-optimized (CSS first)
 async function example2() {
-  await inlineAssets({
+  await inlineAssetsFunc({
     htmlPath: './dist/index.html',
     cssInsertPosition: 'head-start',
   });
@@ -63,7 +63,7 @@ async function example2() {
 
 // Example 3: CSS at end of head
 async function example3() {
-  await inlineAssets({
+  await inlineAssetsFunc({
     htmlPath: './dist/index.html',
     cssInsertPosition: 'head-end',
   });

@@ -1,8 +1,8 @@
 /**
- * Example: Integrating vite-plugin-inline with Rollup
+ * Example: Integrating @ropean/inline-assets with Rollup
  */
 
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 export default {
   // ... your rollup config

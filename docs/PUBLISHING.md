@@ -1,6 +1,6 @@
 # Publishing Guide
 
-This guide will help you publish `vite-plugin-inline` to npm.
+This guide will help you publish `@ropean/inline-assets` to npm.
 
 ## Prerequisites
 
@@ -25,16 +25,16 @@ Edit `package.json` and update:
 
 ```json
 {
-  "name": "vite-plugin-inline",
-  "version": "1.0.0",  // Update version
+  "name": "@ropean/inline-assets",
+  "version": "1.0.0",  // Update version as needed
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/vite-plugin-inline.git"  // Update URL
+    "url": "https://github.com/ropean/inline-assets.git"
   },
   "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/vite-plugin-inline/issues"  // Update URL
+    "url": "https://github.com/ropean/inline-assets/issues"
   },
-  "homepage": "https://github.com/YOUR_USERNAME/vite-plugin-inline#readme"  // Update URL
+  "homepage": "https://github.com/ropean/inline-assets#readme"
 }
 ```
 
@@ -48,7 +48,7 @@ npm link
 
 # In another project, link to test
 cd /path/to/test-project
-npm link vite-plugin-inline
+npm link @ropean/inline-assets
 
 # Test both modes
 # 1. As Vite plugin
@@ -73,10 +73,7 @@ This shows all files that will be included. Verify:
 ### 4. Publish to npm
 
 ```bash
-# For first-time publishing
-npm publish
-
-# For scoped packages (if using @username/vite-plugin-inline)
+# For scoped packages (required for @ropean/inline-assets)
 npm publish --access public
 ```
 
@@ -105,10 +102,10 @@ Test that others can install your package:
 
 ```bash
 # In a new directory
-npm install vite-plugin-inline
+npm install @ropean/inline-assets
 
 # Verify it works
-node -e "import('vite-plugin-inline').then(m => console.log(m))"
+node -e "import('@ropean/inline-assets').then(m => console.log(m))"
 ```
 
 ### Update Documentation
@@ -143,16 +140,15 @@ git push --tags
 
 ### "Package name already exists"
 
-If `vite-plugin-inline` is taken, consider:
-- `@yourusername/vite-plugin-inline` (scoped package)
-- `vite-plugin-inline-assets`
-- `vite-inline-plugin`
+The package name `@ropean/inline-assets` is already registered to you. If you need to change it:
+- Choose another name under your scope: `@ropean/another-name`
+- Or use a different scope if you have one
 
 ### "403 Forbidden"
 
 - Ensure you're logged in: `npm whoami`
-- Check package name isn't taken: `npm view vite-plugin-inline`
-- For scoped packages, use `--access public`
+- Check package name: `npm view @ropean/inline-assets`
+- For scoped packages, always use `--access public`
 
 ### "Files not included"
 
@@ -165,23 +161,23 @@ If `vite-plugin-inline` is taken, consider:
 ⚠️ **Warning**: Only unpublish within 72 hours of publishing!
 
 ```bash
-npm unpublish vite-plugin-inline@1.0.0
+npm unpublish @ropean/inline-assets@1.0.0
 ```
 
 ## Useful Commands
 
 ```bash
 # Check what's published
-npm view vite-plugin-inline
+npm view @ropean/inline-assets
 
 # See all versions
-npm view vite-plugin-inline versions
+npm view @ropean/inline-assets versions
 
 # Check package info
-npm info vite-plugin-inline
+npm info @ropean/inline-assets
 
 # Download count
-npm info vite-plugin-inline downloads
+npm info @ropean/inline-assets downloads
 ```
 
 ## Resources

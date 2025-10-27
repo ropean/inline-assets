@@ -1,17 +1,17 @@
 /**
- * Example: Using vite-plugin-inline as a Vite plugin
+ * Example: Using @ropean/inline-assets as a Vite plugin
  */
 
 import { defineConfig } from 'vite';
-import viteInlineAssets from 'vite-plugin-inline';
+import inlineAssets from '@ropean/inline-assets';
 
 export default defineConfig({
   plugins: [
     // Basic usage with default options
-    viteInlineAssets(),
+    inlineAssets(),
 
     // Or with custom options
-    viteInlineAssets({
+    inlineAssets({
       css: true,
       js: true,
       svg: {

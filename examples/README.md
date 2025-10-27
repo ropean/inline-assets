@@ -1,6 +1,6 @@
 # Examples
 
-This directory contains complete, runnable examples for integrating `vite-plugin-inline` with various build tools and workflows.
+This directory contains complete, runnable examples for integrating `@ropean/inline-assets` with various build tools and workflows.
 
 ## 📚 Available Examples
 
@@ -15,10 +15,10 @@ Basic and advanced Vite plugin configurations.
 
 **Usage:**
 ```javascript
-import viteInlineAssets from 'vite-plugin-inline';
+import inlineAssets from '@ropean/inline-assets';
 
 export default defineConfig({
-  plugins: [viteInlineAssets()]
+  plugins: [inlineAssets()]
 });
 ```
 
@@ -36,7 +36,7 @@ Using `inlineAssets` as a standalone function with any build tool.
 
 **Usage:**
 ```javascript
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 await inlineAssets({
   htmlPath: './dist/index.html'
@@ -143,7 +143,7 @@ Demonstrating different CSS insertion strategies.
 
 **Usage:**
 ```javascript
-viteInlineAssets({
+inlineAssets({
   cssInsertPosition: 'original'  // or 'head-start' or 'head-end'
 })
 ```
@@ -247,7 +247,7 @@ Benefits:
 ### Need help?
 - Read the [main documentation](../README.md)
 - Check [TypeScript definitions](../src/index.d.ts)
-- Open an [issue](https://github.com/yourusername/vite-plugin-inline/issues)
+- Open an [issue](https://github.com/ropean/inline-assets/issues)
 
 ## 📚 Additional Resources
 

@@ -1,7 +1,7 @@
 {
-  "name": "vite-plugin-inline",
+  "name": "@ropean/inline-assets",
   "version": "1.0.0",
-  "description": "A Vite plugin and standalone utility to inline CSS, JavaScript, and SVG assets into HTML for single-file deployment",
+  "description": "A zero-dependency utility to inline CSS, JavaScript, and SVG assets into HTML for single-file deployment. Works as a Vite plugin or standalone function with any build tool.",
   "type": "module",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
@@ -23,33 +23,40 @@
     "prepublishOnly": "npm run check"
   },
   "keywords": [
-    "vite",
-    "vite-plugin",
+    "@ropean",
+    "inline-assets",
+    "@ropean/inline-assets",
     "inline",
     "inline-assets",
     "inline-css",
     "inline-js",
     "inline-svg",
-    "single-file",
-    "build-tool",
     "html",
     "css",
     "javascript",
     "svg",
-    "zero-dependency"
+    "single-file",
+    "vite",
+    "vite-plugin",
+    "webpack",
+    "rollup",
+    "esbuild",
+    "build-tool",
+    "zero-dependency",
+    "bundler"
   ],
   "author": "ropean",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/vite-plugin-inline.git"
+    "url": "https://github.com/ropean/inline-assets.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/vite-plugin-inline/issues"
+    "url": "https://github.com/ropean/inline-assets/issues"
   },
-  "homepage": "https://github.com/yourusername/vite-plugin-inline#readme",
+  "homepage": "https://github.com/ropean/inline-assets#readme",
   "peerDependencies": {
-    "vite": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0"
+    "vite": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0"
   },
   "peerDependenciesMeta": {
     "vite": {

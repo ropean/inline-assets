@@ -1,7 +1,8 @@
-# vite-plugin-inline
+# @ropean/inline-assets
 
-[![npm version](https://img.shields.io/npm/v/vite-plugin-inline.svg)](https://www.npmjs.com/package/vite-plugin-inline)
-[![license](https://img.shields.io/npm/l/vite-plugin-inline.svg)](https://github.com/yourusername/vite-plugin-inline/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
+[![license](https://img.shields.io/npm/l/@ropean/inline-assets.svg)](https://github.com/ropean/inline-assets/blob/main/LICENSE)
+[![downloads](https://img.shields.io/npm/dm/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
 
 A **zero-dependency** Vite plugin and standalone utility to inline CSS, JavaScript, and SVG assets into HTML for single-file deployment.
 
@@ -20,15 +21,15 @@ A **zero-dependency** Vite plugin and standalone utility to inline CSS, JavaScri
 ## 📦 Installation
 
 ```bash
-npm install vite-plugin-inline --save-dev
+npm install @ropean/inline-assets --save-dev
 ```
 
 ```bash
-yarn add vite-plugin-inline -D
+yarn add @ropean/inline-assets -D
 ```
 
 ```bash
-pnpm add vite-plugin-inline -D
+pnpm add @ropean/inline-assets -D
 ```
 
 ## 🚀 Usage
@@ -38,11 +39,11 @@ pnpm add vite-plugin-inline -D
 ```typescript
 // vite.config.ts
 import { defineConfig } from 'vite';
-import viteInlineAssets from 'vite-plugin-inline';
+import inlineAssets from '@ropean/inline-assets';
 
 export default defineConfig({
   plugins: [
-    viteInlineAssets({
+    inlineAssets({
       css: true,
       js: true,
       svg: { img: false, link: true },
@@ -57,7 +58,7 @@ export default defineConfig({
 Perfect for use with **any build tool** (Webpack, Rollup, esbuild, etc.):
 
 ```javascript
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 // After your build process
 await inlineAssets({
@@ -71,7 +72,7 @@ await inlineAssets({
 ### With Custom Logger
 
 ```javascript
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 const myLogger = {
   info: (msg) => console.log('[INFO]', msg),
@@ -187,7 +188,7 @@ interface LoggerInterface {
 Control where inlined CSS is placed in your HTML:
 
 ```javascript
-viteInlineAssets({
+inlineAssets({
   cssInsertPosition: 'original'  // Default: keep CSS at original <link> position
 })
 ```
@@ -212,12 +213,12 @@ viteInlineAssets({
 
 ```javascript
 // Keep CSS before JS (preserves order)
-viteInlineAssets({
+inlineAssets({
   cssInsertPosition: 'original'
 })
 
 // Optimize for performance (CSS at top)
-viteInlineAssets({
+inlineAssets({
   cssInsertPosition: 'head-start'
 })
 ```
@@ -227,7 +228,7 @@ viteInlineAssets({
 Exclude specific files from inlining:
 
 ```javascript
-viteInlineAssets({
+inlineAssets({
   excludes: [
     'index.js',           // Matches any file named 'index.js'
     'assets/vendor.js',   // Matches 'assets/vendor.js' specifically
@@ -289,7 +290,7 @@ See the [`examples/`](examples/) directory for complete, runnable examples:
 
 ```javascript
 // webpack.config.js
-const { inlineAssets } = require('vite-plugin-inline');
+const { inlineAssets } = require('@ropean/inline-assets');
 
 module.exports = {
   plugins: [{
@@ -311,7 +312,7 @@ module.exports = {
 
 ```javascript
 // rollup.config.js
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 export default {
   plugins: [{
@@ -341,7 +342,7 @@ export default {
 
 ```javascript
 // inline-assets.js
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 const result = await inlineAssets({
   htmlPath: './dist/index.html'
@@ -362,7 +363,7 @@ if (!result.success) {
 
 ```javascript
 // gulpfile.js
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 import gulp from 'gulp';
 
 gulp.task('inline', async () => {
@@ -400,5 +401,5 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📮 Issues
 
-Found a bug or have a feature request? [Open an issue](https://github.com/yourusername/vite-plugin-inline/issues)
+Found a bug or have a feature request? [Open an issue](https://github.com/ropean/inline-assets/issues)
 

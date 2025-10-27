@@ -1,9 +1,9 @@
 /**
- * Example: Using vite-plugin-inline as a standalone function
+ * Example: Using @ropean/inline-assets as a standalone function
  * Works with any build tool (Webpack, Rollup, esbuild, etc.)
  */
 
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 // Basic usage
 async function basicExample() {

@@ -1,8 +1,8 @@
 /**
- * Example: Integrating vite-plugin-inline with Gulp
+ * Example: Integrating @ropean/inline-assets with Gulp
  */
 
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 import gulp from 'gulp';
 
 // Basic inline task
