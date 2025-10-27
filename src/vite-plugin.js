@@ -76,6 +76,7 @@ import { createLogger } from './logger.js';
  * @property {string[]} [excludes=[]] - Array of file patterns to exclude from inlining
  * @property {string} [distDir='dist'] - Distribution directory name
  * @property {string} [htmlFileName='index.html'] - HTML file name to process
+ * @property {'original'|'head-start'|'head-end'} [cssInsertPosition='original'] - Where to insert inlined CSS
  * @property {import('./logger.js').LoggerInterface|boolean} [logger] - Custom logger or false to disable logging
  */
 
@@ -172,6 +173,7 @@ export function viteInlineAssets(options = {}) {
         js: config.js,
         svg: config.svg,
         excludes: config.excludes,
+        cssInsertPosition: config.cssInsertPosition,
         removeInlinedFiles: true,
         cleanupEmptyDirs: true,
         logger: config.logger,

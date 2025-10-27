@@ -8,7 +8,7 @@ import { inlineAssets } from 'vite-plugin-inline';
 // Basic usage
 async function basicExample() {
   const result = await inlineAssets({
-    htmlPath: './dist/index.html'
+    htmlPath: './dist/index.html',
   });
 
   if (result.success) {
@@ -26,12 +26,12 @@ async function advancedExample() {
     css: true,
     js: true,
     svg: {
-      img: true,   // Inline SVG in <img> tags
-      link: true   // Inline SVG in <link> tags
+      img: true, // Inline SVG in <img> tags
+      link: true, // Inline SVG in <link> tags
     },
     excludes: ['vendor.js', 'assets/analytics.js'],
     removeInlinedFiles: true,
-    cleanupEmptyDirs: true
+    cleanupEmptyDirs: true,
   });
 
   console.log('Inlined files:', result.inlinedFiles);
@@ -48,7 +48,7 @@ async function customLoggerExample() {
 
   await inlineAssets({
     htmlPath: './dist/index.html',
-    logger: myLogger
+    logger: myLogger,
   });
 }
 
@@ -56,10 +56,9 @@ async function customLoggerExample() {
 async function silentExample() {
   await inlineAssets({
     htmlPath: './dist/index.html',
-    logger: false
+    logger: false,
   });
 }
 
 // Run examples
 basicExample();
-

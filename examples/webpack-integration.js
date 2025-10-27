@@ -6,7 +6,7 @@ const { inlineAssets } = require('vite-plugin-inline');
 
 module.exports = {
   // ... your webpack config
-  
+
   plugins: [
     // Add as a custom plugin
     {
@@ -18,18 +18,17 @@ module.exports = {
           }
 
           console.log('Build complete, inlining assets...');
-          
+
           const result = await inlineAssets({
             htmlPath: './dist/index.html',
-            baseDir: './dist'
+            baseDir: './dist',
           });
 
           if (result.success) {
             console.log(`✓ Inlined ${result.inlinedFiles.length} files`);
           }
         });
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
-

@@ -119,6 +119,9 @@ interface VitePluginOptions {
   /** HTML file name to process (default: 'index.html') */
   htmlFileName?: string;
   
+  /** Where to insert inlined CSS (default: 'original') */
+  cssInsertPosition?: 'original' | 'head-start' | 'head-end';
+  
   /** Custom logger or false to disable (default: built-in logger) */
   logger?: LoggerInterface | false;
 }
@@ -155,6 +158,9 @@ interface InlineAssetsOptions {
   /** Whether to remove empty directories (default: true) */
   cleanupEmptyDirs?: boolean;
   
+  /** Where to insert inlined CSS (default: 'original') */
+  cssInsertPosition?: 'original' | 'head-start' | 'head-end';
+  
   /** Custom logger or false to disable (default: built-in logger) */
   logger?: LoggerInterface | false;
 }
@@ -174,6 +180,46 @@ interface LoggerInterface {
   file?(path: string): string;        // Optional
   newline?(count?: number): void;     // Optional
 }
+```
+
+## 🎯 CSS Insert Position
+
+Control where inlined CSS is placed in your HTML:
+
+```javascript
+viteInlineAssets({
+  cssInsertPosition: 'original'  // Default: keep CSS at original <link> position
+})
+```
+
+### Available Options:
+
+- **`'original'`** (default) - Keeps CSS at the original `<link>` tag position
+  - ✅ Preserves the order of CSS and JS
+  - ✅ CSS appears before JS if that's how you structured it
+  - ⚠️ May create multiple `<style>` tags if you have multiple CSS files
+
+- **`'head-start'`** - Moves all CSS to the beginning of `<head>`
+  - ✅ Optimal for performance (CSS loads first)
+  - ✅ Single merged `<style>` tag
+  - ⚠️ Changes the original order
+
+- **`'head-end'`** - Moves all CSS to the end of `<head>`
+  - ✅ Single merged `<style>` tag
+  - ⚠️ CSS loads after other head elements
+
+### Example:
+
+```javascript
+// Keep CSS before JS (preserves order)
+viteInlineAssets({
+  cssInsertPosition: 'original'
+})
+
+// Optimize for performance (CSS at top)
+viteInlineAssets({
+  cssInsertPosition: 'head-start'
+})
 ```
 
 ## 🎯 Exclusion Patterns
@@ -226,68 +272,109 @@ dist/
 
 ## 🤝 Integration Examples
 
-### With Webpack
+See the [`examples/`](examples/) directory for complete, runnable examples:
+
+- 📘 **[Vite Plugin Usage](examples/vite-usage.js)** - Basic and advanced Vite plugin configurations
+- 🔧 **[Standalone Function](examples/standalone-usage.js)** - Use with any build tool
+- 📦 **[Webpack Integration](examples/webpack-integration.js)** - Webpack plugin example
+- 🎯 **[Rollup Integration](examples/rollup-integration.js)** - Rollup plugin example
+- 🌊 **[Gulp Integration](examples/gulp-integration.js)** - Gulp task example
+- 📜 **[npm Scripts](examples/npm-script.js)** - Post-build script with error handling
+- 🎨 **[CSS Insert Position](examples/css-insert-position.js)** - CSS positioning strategies
+
+### Quick Start Examples
+
+<details>
+<summary><b>Webpack Integration</b></summary>
 
 ```javascript
 // webpack.config.js
 const { inlineAssets } = require('vite-plugin-inline');
 
 module.exports = {
-  // ... your webpack config
-  plugins: [
-    {
-      apply: (compiler) => {
-        compiler.hooks.done.tap('InlineAssets', async () => {
-          await inlineAssets({
-            htmlPath: './dist/index.html'
-          });
-        });
-      }
+  plugins: [{
+    apply: (compiler) => {
+      compiler.hooks.done.tap('InlineAssets', async () => {
+        await inlineAssets({ htmlPath: './dist/index.html' });
+      });
     }
-  ]
+  }]
 };
 ```
 
-### With Rollup
+👉 [View full example](examples/webpack-integration.js)
+
+</details>
+
+<details>
+<summary><b>Rollup Integration</b></summary>
 
 ```javascript
 // rollup.config.js
 import { inlineAssets } from 'vite-plugin-inline';
 
 export default {
-  // ... your rollup config
-  plugins: [
-    {
-      name: 'inline-assets',
-      closeBundle: async () => {
-        await inlineAssets({
-          htmlPath: './dist/index.html'
-        });
-      }
+  plugins: [{
+    name: 'inline-assets',
+    closeBundle: async () => {
+      await inlineAssets({ htmlPath: './dist/index.html' });
     }
-  ]
+  }]
 };
 ```
 
-### With npm Scripts
+👉 [View full example](examples/rollup-integration.js)
+
+</details>
+
+<details>
+<summary><b>npm Scripts</b></summary>
 
 ```json
 {
   "scripts": {
     "build": "vite build",
-    "postbuild": "node inline.js"
+    "postbuild": "node inline-assets.js"
   }
 }
 ```
 
 ```javascript
-// inline.js
+// inline-assets.js
 import { inlineAssets } from 'vite-plugin-inline';
 
-await inlineAssets({
+const result = await inlineAssets({
   htmlPath: './dist/index.html'
 });
+
+if (!result.success) {
+  console.error('Failed to inline assets');
+  process.exit(1);
+}
 ```
+
+👉 [View full example with error handling](examples/npm-script.js)
+
+</details>
+
+<details>
+<summary><b>Gulp Integration</b></summary>
+
+```javascript
+// gulpfile.js
+import { inlineAssets } from 'vite-plugin-inline';
+import gulp from 'gulp';
+
+gulp.task('inline', async () => {
+  await inlineAssets({ htmlPath: './dist/index.html' });
+});
+
+gulp.task('build', gulp.series('your-build-task', 'inline'));
+```
+
+👉 [View full example with error handling](examples/gulp-integration.js)
+
+</details>
 
 ## 🐛 Troubleshooting
 

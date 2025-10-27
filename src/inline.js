@@ -30,6 +30,7 @@ import { createLogger } from './logger.js';
  * @property {string[]} [excludes=[]] - Array of file patterns to exclude from inlining
  * @property {boolean} [removeInlinedFiles=true] - Whether to delete inlined asset files
  * @property {boolean} [cleanupEmptyDirs=true] - Whether to remove empty directories after inlining
+ * @property {'original'|'head-start'|'head-end'} [cssInsertPosition='original'] - Where to insert inlined CSS
  * @property {import('./logger.js').LoggerInterface|boolean} [logger] - Custom logger or false to disable logging
  */
 
@@ -102,6 +103,7 @@ export async function inlineAssets(options) {
     excludes = [],
     removeInlinedFiles = true,
     cleanupEmptyDirs = true,
+    cssInsertPosition = 'original',
     logger: customLogger,
   } = options;
 
@@ -130,42 +132,81 @@ export async function inlineAssets(options) {
     // Inline CSS files
     // ========================================
     if (css) {
-      let inlinedStyles = '';
       const cssRegex = /<link[^>]*href=["']([^"']*\.css)["'][^>]*>/g;
 
-      // Collect all CSS content from link tags
-      html = html.replace(cssRegex, (match, cssFile) => {
-        if (isExcluded(cssFile, excludes)) {
-          logger.info(`Skipped CSS (excluded): ${logger.file(cssFile)}`);
-          return match;
-        }
-
-        const cssPath = path.join(baseDir, cssFile);
-        if (fs.existsSync(cssPath)) {
-          try {
-            const cssContent = fs.readFileSync(cssPath, 'utf-8');
-            inlinedStyles += cssContent + '\n';
-            inlinedFiles.push(cssFile);
-            
-            if (removeInlinedFiles) {
-              fs.unlinkSync(cssPath);
-            }
-            
-            logger.success(`Inlined CSS: ${logger.file(cssFile)}`);
-            return ''; // Remove the original link tag
-          } catch (err) {
-            const error = `Failed to inline CSS ${cssFile}: ${err.message}`;
-            logger.error(error);
-            errors.push(error);
+      if (cssInsertPosition === 'original') {
+        // Strategy 1: Replace each <link> tag with inline <style> at its original position
+        html = html.replace(cssRegex, (match, cssFile) => {
+          if (isExcluded(cssFile, excludes)) {
+            logger.info(`Skipped CSS (excluded): ${logger.file(cssFile)}`);
             return match;
           }
-        }
-        return match;
-      });
 
-      // Insert all CSS at the beginning of <head> for optimal performance
-      if (inlinedStyles) {
-        html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
+          const cssPath = path.join(baseDir, cssFile);
+          if (fs.existsSync(cssPath)) {
+            try {
+              const cssContent = fs.readFileSync(cssPath, 'utf-8');
+              inlinedFiles.push(cssFile);
+              
+              if (removeInlinedFiles) {
+                fs.unlinkSync(cssPath);
+              }
+              
+              logger.success(`Inlined CSS: ${logger.file(cssFile)}`);
+              return `<style>\n${cssContent}</style>`;
+            } catch (err) {
+              const error = `Failed to inline CSS ${cssFile}: ${err.message}`;
+              logger.error(error);
+              errors.push(error);
+              return match;
+            }
+          }
+          return match;
+        });
+      } else {
+        // Strategy 2: Collect all CSS and insert at specified position
+        let inlinedStyles = '';
+        
+        // Collect all CSS content from link tags
+        html = html.replace(cssRegex, (match, cssFile) => {
+          if (isExcluded(cssFile, excludes)) {
+            logger.info(`Skipped CSS (excluded): ${logger.file(cssFile)}`);
+            return match;
+          }
+
+          const cssPath = path.join(baseDir, cssFile);
+          if (fs.existsSync(cssPath)) {
+            try {
+              const cssContent = fs.readFileSync(cssPath, 'utf-8');
+              inlinedStyles += cssContent + '\n';
+              inlinedFiles.push(cssFile);
+              
+              if (removeInlinedFiles) {
+                fs.unlinkSync(cssPath);
+              }
+              
+              logger.success(`Inlined CSS: ${logger.file(cssFile)}`);
+              return ''; // Remove the original link tag
+            } catch (err) {
+              const error = `Failed to inline CSS ${cssFile}: ${err.message}`;
+              logger.error(error);
+              errors.push(error);
+              return match;
+            }
+          }
+          return match;
+        });
+
+        // Insert all CSS at the specified position
+        if (inlinedStyles) {
+          if (cssInsertPosition === 'head-start') {
+            // Insert at the beginning of <head>
+            html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
+          } else if (cssInsertPosition === 'head-end') {
+            // Insert at the end of <head>
+            html = html.replace('</head>', `  <style>\n${inlinedStyles}  </style>\n</head>`);
+          }
+        }
       }
     }
 

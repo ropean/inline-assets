@@ -140,6 +140,15 @@ export interface InlineAssetsOptions {
   cleanupEmptyDirs?: boolean;
 
   /**
+   * Where to insert inlined CSS
+   * - 'original': Keep CSS at the original <link> tag position (preserves order)
+   * - 'head-start': Move all CSS to the beginning of <head> (optimal performance)
+   * - 'head-end': Move all CSS to the end of <head>
+   * @default 'original'
+   */
+  cssInsertPosition?: 'original' | 'head-start' | 'head-end';
+
+  /**
    * Custom logger or false to disable logging
    * @default Built-in logger
    */
@@ -211,6 +220,15 @@ export interface VitePluginOptions {
    * @default 'index.html'
    */
   htmlFileName?: string;
+
+  /**
+   * Where to insert inlined CSS
+   * - 'original': Keep CSS at the original <link> tag position (preserves order)
+   * - 'head-start': Move all CSS to the beginning of <head> (optimal performance)
+   * - 'head-end': Move all CSS to the end of <head>
+   * @default 'original'
+   */
+  cssInsertPosition?: 'original' | 'head-start' | 'head-end';
 
   /**
    * Custom logger or false to disable logging

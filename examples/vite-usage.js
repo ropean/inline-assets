@@ -15,15 +15,14 @@ export default defineConfig({
       css: true,
       js: true,
       svg: {
-        img: false,  // Don't inline SVG in <img> tags
-        link: true   // Inline SVG in <link> tags (favicon)
+        img: false, // Don't inline SVG in <img> tags
+        link: true, // Inline SVG in <link> tags (favicon)
       },
       excludes: [
-        'vendor.js',           // Exclude specific filename
-        'assets/large-lib.js'  // Exclude specific path
+        'vendor.js', // Exclude specific filename
+        'assets/large-lib.js', // Exclude specific path
       ],
-      logger: false  // Disable logging
-    })
-  ]
+      logger: false, // Disable logging
+    }),
+  ],
 });
-
