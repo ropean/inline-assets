@@ -1,7 +1,8 @@
 # @ropean/inline-assets
 
-[![npm version](https://img.shields.io/npm/v/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
+
 [![license](https://img.shields.io/npm/l/@ropean/inline-assets.svg)](https://github.com/ropean/inline-assets/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
 [![downloads](https://img.shields.io/npm/dm/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
 
 A **zero-dependency** Vite plugin and standalone utility to inline CSS, JavaScript, and SVG assets into HTML for single-file deployment.
@@ -21,7 +22,7 @@ A **zero-dependency** Vite plugin and standalone utility to inline CSS, JavaScri
 ## 📦 Installation
 
 ```bash
-npm install @ropean/inline-assets --save-dev
+npm install @ropean/inline-assets -D
 ```
 
 ```bash
