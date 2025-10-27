@@ -27,5 +27,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - File pattern matching (full path and filename)
 - Detailed logging with color-coded output
 
-[1.0.0]: https://github.com/yourusername/vite-plugin-inline/releases/tag/v1.0.0
+[1.0.0]: https://github.com/ropean/inline-assets/releases/tag/v1.0.0
 

@@ -229,8 +229,8 @@ gulp.task('build', gulp.series('your-build-task', 'inline'));
 
 You're ready to inline assets! If you have questions:
 - 📖 Check the [README](README.md)
-- 🐛 [Open an issue](https://github.com/yourusername/vite-plugin-inline/issues)
-- 💬 Start a [discussion](https://github.com/yourusername/vite-plugin-inline/discussions)
+- 🐛 [Open an issue](https://github.com/ropean/inline-assets/issues)
+- 💬 Start a [discussion](https://github.com/ropean/inline-assets/discussions)
 
 Happy coding! 🚀
 

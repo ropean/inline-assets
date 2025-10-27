@@ -265,7 +265,7 @@ If you encounter issues during migration:
 1. **Check the logs**: The new logger provides detailed output
 2. **Compare options**: Ensure all options are correctly set
 3. **Test locally**: Use `npm link` to test before publishing
-4. **Open an issue**: [GitHub Issues](https://github.com/yourusername/vite-plugin-inline/issues)
+4. **Open an issue**: [GitHub Issues](https://github.com/ropean/inline-assets/issues)
 
 ## 📚 Additional Resources
 

@@ -330,8 +330,8 @@ Your package is now:
 ## 📞 Support
 
 - 📖 [Documentation](README.md)
-- 🐛 [Report Issues](https://github.com/yourusername/vite-plugin-inline/issues)
-- 💬 [Discussions](https://github.com/yourusername/vite-plugin-inline/discussions)
+- 🐛 [Report Issues](https://github.com/ropean/inline-assets/issues)
+- 💬 [Discussions](https://github.com/ropean/inline-assets/discussions)
 
 ---
 

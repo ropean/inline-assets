@@ -52,7 +52,7 @@
 
 ### 3. 仓库 URL 变更
 ```diff
-- https://github.com/yourusername/vite-plugin-inline
+- https://github.com/ropean/inline-assets
 + https://github.com/ropean/inline-assets
 ```
 
