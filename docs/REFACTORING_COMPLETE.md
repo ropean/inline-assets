@@ -89,7 +89,7 @@ vite-plugin-inline/
 │   └── npm-script.js
 │
 ├── test/                         # Test files (not published)
-│   ├── test.html
+│   ├── index.html
 │   ├── test-standalone.js
 │   └── assets/
 │

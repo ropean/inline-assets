@@ -236,21 +236,21 @@ interface InlineAssetsOptions {
 ```javascript
 // 测试 1: 验证 'original' 保留顺序
 const html1 = await inlineAssets({
-  htmlPath: './test.html',
+  htmlPath: './index.html',
   cssInsertPosition: 'original'
 });
 // 验证 CSS 在原位置
 
 // 测试 2: 验证 'head-start' 移到最前
 const html2 = await inlineAssets({
-  htmlPath: './test.html',
+  htmlPath: './index.html',
   cssInsertPosition: 'head-start'
 });
 // 验证 CSS 在 <head> 之后第一个位置
 
 // 测试 3: 验证 'head-end' 移到最后
 const html3 = await inlineAssets({
-  htmlPath: './test.html',
+  htmlPath: './index.html',
   cssInsertPosition: 'head-end'
 });
 // 验证 CSS 在 </head> 之前

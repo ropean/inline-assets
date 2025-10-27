@@ -15,7 +15,7 @@ async function runTest() {
   console.log('🧪 Testing vite-plugin-inline (standalone mode)\n');
 
   // Create a copy of test HTML for testing
-  const originalHtml = path.join(__dirname, 'test.html');
+  const originalHtml = path.join(__dirname, 'index.html');
   const testHtml = path.join(__dirname, 'test-output.html');
   
   // Copy test files

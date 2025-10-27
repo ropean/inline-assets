@@ -21,7 +21,7 @@ vite-plugin-inline/
 │   ├── rollup-integration.js     # Rollup integration
 │   └── npm-script.js             # npm script example
 ├── test/                         # Test files
-│   ├── test.html                 # Test HTML file
+│   ├── index.html                 # Test HTML file
 │   ├── test-standalone.js        # Standalone test script
 │   └── assets/                   # Test assets
 ├── package.json                  # Package configuration

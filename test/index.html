@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ropean/inline-assets - Test Demo</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img src="assets/logo.svg" alt="Logo" class="logo" />
+        <h1 class="title">@ropean/inline-assets</h1>
+        <p class="subtitle">Zero-Dependency Asset Inlining Tool</p>
+      </header>
+
+      <main class="content">
+        <section class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Zero Dependencies</h3>
+            <p>No external packages required. Built-in ANSI color logger.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔌</div>
+            <h3>Dual Mode</h3>
+            <p>Use as Vite plugin or standalone function with any build tool.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Inline CSS</h3>
+            <p>Converts &lt;link&gt; tags to inline &lt;style&gt; tags.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h3>Inline JavaScript</h3>
+            <p>Converts &lt;script src&gt; to inline &lt;script&gt; blocks.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🖼️</div>
+            <h3>Inline SVG</h3>
+            <p>Converts SVG files to base64 data URIs.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">⚙️</div>
+            <h3>Configurable</h3>
+            <p>CSS insert position, excludes, custom logger support.</p>
+          </div>
+        </section>
+
+        <section class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="fileCount">0</div>
+            <div class="stat-label">Files Processed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="sizeReduction">0%</div>
+            <div class="stat-label">Size Reduction</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="buildTime">0ms</div>
+            <div class="stat-label">Build Time</div>
+          </div>
+        </section>
+
+        <section class="code-example">
+          <h2>Quick Start</h2>
+          <pre><code>npm install @ropean/inline-assets --save-dev</code></pre>
+          <pre><code>import inlineAssets from '@ropean/inline-assets';
+
+export default defineConfig({
+  plugins: [inlineAssets()]
+});</code></pre>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>MIT License © 2025 <a href="https://ropean.org" target="_blank">ropean</a></p>
+        <p>
+          <a href="https://github.com/ropean/inline-assets" target="_blank">GitHub</a>
+          <span class="separator">•</span>
+          <a href="https://www.npmjs.com/package/@ropean/inline-assets" target="_blank">npm</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="assets/main.js"></script>
+  </body>
+</html>
