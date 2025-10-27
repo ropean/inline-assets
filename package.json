@@ -1,0 +1,62 @@
+{
+  "name": "vite-plugin-inline",
+  "version": "1.0.0",
+  "description": "A Vite plugin and standalone utility to inline CSS, JavaScript, and SVG assets into HTML for single-file deployment",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/test-standalone.js",
+    "check": "node --check src/index.js && node --check src/logger.js && node --check src/inline.js && node --check src/vite-plugin.js",
+    "prepublishOnly": "npm run check"
+  },
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "inline",
+    "inline-assets",
+    "inline-css",
+    "inline-js",
+    "inline-svg",
+    "single-file",
+    "build-tool",
+    "html",
+    "css",
+    "javascript",
+    "svg",
+    "zero-dependency"
+  ],
+  "author": "ropean",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/vite-plugin-inline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/vite-plugin-inline/issues"
+  },
+  "homepage": "https://github.com/yourusername/vite-plugin-inline#readme",
+  "peerDependencies": {
+    "vite": "^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=14.18.0"
+  }
+}

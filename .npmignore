@@ -1,0 +1,41 @@
+# Development files
+node_modules/
+.git/
+.vscode/
+.idea/
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Examples
+examples/
+
+# Build artifacts
+dist/
+build/
+
+# Documentation
+docs/
+
+# Config files
+.eslintrc*
+.prettierrc*
+tsconfig.json
+vite.config.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Old files
+logger.ts
+vite-plugin-inline.js
+vite-plugin-inline.d.ts
+
