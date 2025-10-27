@@ -58,8 +58,8 @@
 
 ### 4. npm 安装命令变更
 ```diff
-- npm install vite-plugin-inline --save-dev
-+ npm install @ropean/inline-assets --save-dev
+- npm install vite-plugin-inline -D
++ npm install @ropean/inline-assets -D
 ```
 
 ## 🎯 关键词优化

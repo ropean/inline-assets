@@ -5,7 +5,7 @@ Get started with **vite-plugin-inline** in less than 5 minutes!
 ## 📦 Installation
 
 ```bash
-npm install vite-plugin-inline --save-dev
+npm install vite-plugin-inline -D
 ```
 
 ## 🚀 Quick Setup

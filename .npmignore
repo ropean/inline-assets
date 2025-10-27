@@ -16,6 +16,7 @@ examples/
 # Build artifacts
 dist/
 build/
+dist-website/
 
 # Documentation
 docs/
