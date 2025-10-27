@@ -5,6 +5,9 @@
   "type": "module",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
+  "workspaces": [
+    "website"
+  ],
   "exports": {
     ".": {
       "types": "./src/index.d.ts",
@@ -21,9 +24,9 @@
     "test": "node test/test-standalone.js",
     "check": "node --check src/index.js && node --check src/logger.js && node --check src/inline.js && node --check src/vite-plugin.js",
     "prepublishOnly": "npm run check",
-    "dev:website": "npm --prefix website run dev",
-    "build:website": "npm --prefix website run build",
-    "preview:website": "npm --prefix website run preview"
+    "dev": "npm --prefix website run dev",
+    "build": "npm --prefix website run build",
+    "preview": "npm --prefix website run preview"
   },
   "keywords": [
     "@ropean",

@@ -1,21 +1,21 @@
 # CSS Insert Position Feature
 
-## 🎯 问题背景
+## 🎯 Background
 
-在原始实现中，所有内联的 CSS 都会被**强制移动到 `<head>` 标签的最前面**，这导致：
+Previously, all inlined CSS was forced to the beginning of `<head>`, which caused:
 
-1. ❌ **破坏了原始顺序** - 即使你在 HTML 中把 `<link>` 放在 `<script>` 前面，内联后 CSS 也会被移到最前面
-2. ❌ **不尊重开发者意图** - 开发者精心安排的资源加载顺序被改变
-3. ❌ **可能导致问题** - 某些情况下，CSS 和 JS 的加载顺序很重要
+1. ❌ Breaking original order
+2. ❌ Ignoring developer intent
+3. ❌ Potential issues from CSS/JS load order
 
-### 原始代码问题
+### Original Behavior
 
 ```javascript
 // 旧代码：强制插入到 <head> 最前面
 html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
 ```
 
-这会导致：
+This resulted in:
 ```html
 <!-- 原始 HTML -->
 <head>
@@ -24,32 +24,31 @@ html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
   <script src="main.js"></script>
 </head>
 
-<!-- 内联后（旧版本）-->
+<!-- After (old version) -->
 <head>
-  <style>/* CSS */</style>  ← 被强制移到最前面！
+  <style>/* CSS */</style>  ← forced to top
   <meta charset="UTF-8">
   <script type="module">/* JS */</script>
 </head>
 ```
 
-## ✨ 解决方案
+## ✨ Solution
 
-添加了 `cssInsertPosition` 选项，支持三种插入策略：
+Add `cssInsertPosition` with three strategies:
 
-### 1. `'original'` (默认) - 保留原始位置 ⭐
+### 1. `'original'` (default) - Keep original position ⭐
 
-**行为：** 将 CSS 内联到原始 `<link>` 标签的位置
+Inline CSS at each original `<link>` position
 
-**优点：**
-- ✅ 保留原始顺序
-- ✅ 尊重开发者意图
-- ✅ CSS 在 JS 前面（如果你这样写的话）
-- ✅ 符合直觉
+Pros:
+- ✅ Preserves original order
+- ✅ Respects developer intent
+- ✅ CSS stays before JS if authored so
 
-**缺点：**
-- ⚠️ 多个 CSS 文件会产生多个 `<style>` 标签
+Cons:
+- ⚠️ Multiple `<style>` tags for multiple CSS files
 
-**示例：**
+Example:
 ```html
 <!-- 原始 HTML -->
 <head>
@@ -58,25 +57,24 @@ html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
   <script src="main.js"></script>
 </head>
 
-<!-- 内联后 -->
+<!-- After -->
 <head>
   <meta charset="UTF-8">
-  <style>/* CSS */</style>  ← 保持在原位置
+  <style>/* CSS */</style>  ← kept in place
   <script type="module">/* JS */</script>
 </head>
 ```
 
-### 2. `'head-start'` - 移到 `<head>` 开头
+### 2. `'head-start'` - Move to beginning of `<head>`
 
-**行为：** 收集所有 CSS，合并后插入到 `<head>` 标签之后
+Collect and insert all CSS at `<head>` start
 
-**优点：**
-- ✅ 性能最优（CSS 最先加载）
-- ✅ 单个合并的 `<style>` 标签
-- ✅ 符合性能最佳实践
+Pros:
+- ✅ Performance-optimized (CSS loads first)
+- ✅ Single merged `<style>` tag
 
-**缺点：**
-- ⚠️ 改变了原始顺序
+Cons:
+- ⚠️ Changes original order
 
 **示例：**
 ```html
@@ -95,16 +93,16 @@ html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
 </head>
 ```
 
-### 3. `'head-end'` - 移到 `<head>` 末尾
+### 3. `'head-end'` - Move to end of `<head>`
 
 **行为：** 收集所有 CSS，合并后插入到 `</head>` 标签之前
 
-**优点：**
-- ✅ 单个合并的 `<style>` 标签
-- ✅ 其他 head 元素先加载
+Pros:
+- ✅ Single merged `<style>` tag
+- ✅ Other head elements load first
 
-**缺点：**
-- ⚠️ CSS 在 JS 之后（可能影响渲染）
+Cons:
+- ⚠️ CSS after JS (may affect rendering)
 
 **示例：**
 ```html
@@ -123,59 +121,59 @@ html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
 </head>
 ```
 
-## 🔧 使用方法
+## 🔧 Usage
 
 ### 作为 Vite 插件
 
 ```javascript
-import viteInlineAssets from 'vite-plugin-inline';
+import inlineAssets from '@ropean/inline-assets';
 
 export default defineConfig({
   plugins: [
-    viteInlineAssets({
-      cssInsertPosition: 'original'  // 或 'head-start' 或 'head-end'
+    inlineAssets({
+      cssInsertPosition: 'original'  // or 'head-start' or 'head-end'
     })
   ]
 });
 ```
 
-### 作为独立函数
+### Standalone Function
 
 ```javascript
-import { inlineAssets } from 'vite-plugin-inline';
+import { inlineAssets } from '@ropean/inline-assets';
 
 await inlineAssets({
   htmlPath: './dist/index.html',
-  cssInsertPosition: 'original'  // 或 'head-start' 或 'head-end'
+  cssInsertPosition: 'original'  // or 'head-start' or 'head-end'
 });
 ```
 
-## 📊 对比表格
+## 📊 Comparison Table
 
-| 策略 | 保留顺序 | 单个 `<style>` | CSS 在 JS 前 | 性能最优 | 推荐场景 |
-|------|---------|---------------|-------------|---------|---------|
-| `original` | ✅ | ❌ | ✅ (如果你这样写) | ⚠️ | 需要保留顺序 |
-| `head-start` | ❌ | ✅ | ✅ | ✅ | 性能优先 |
-| `head-end` | ❌ | ✅ | ❌ | ❌ | 特殊需求 |
+| Strategy | Preserves Order | Single `<style>` | CSS before JS | Best Performance | Use When |
+|----------|------------------|------------------|---------------|------------------|----------|
+| `original` | ✅ | ❌ | ✅ | ⚠️ | Preserve order |
+| `head-start` | ❌ | ✅ | ✅ | ✅ | Performance |
+| `head-end` | ❌ | ✅ | ❌ | ❌ | Special needs |
 
-## 💡 推荐使用场景
+## 💡 Recommendations
 
-### 使用 `'original'` (默认)
-- ✅ 你关心资源加载顺序
-- ✅ 你的 CSS 和 JS 有依赖关系
-- ✅ 你希望 CSS 在 JS 前面（如你在 HTML 中写的那样）
-- ✅ 你不在意多个 `<style>` 标签
+### Use `'original'` (default)
+- ✅ You care about load order
+- ✅ CSS/JS have dependencies
+- ✅ You authored CSS before JS
+- ✅ Multiple `<style>` tags are acceptable
 
-### 使用 `'head-start'`
-- ✅ 性能是首要考虑
-- ✅ 你希望 CSS 尽快加载（减少 FOUC）
-- ✅ 你希望单个合并的 `<style>` 标签
-- ✅ 你不关心原始顺序
+### Use `'head-start'`
+- ✅ Performance first
+- ✅ Minimize FOUC
+- ✅ Single merged `<style>`
+- ✅ Order not important
 
-### 使用 `'head-end'`
-- ✅ 你有特殊的加载需求
-- ✅ 你希望 meta 标签和 title 先加载
-- ✅ 你希望单个合并的 `<style>` 标签
+### Use `'head-end'`
+- ✅ Special loading needs
+- ✅ Meta/title should load first
+- ✅ Single merged `<style>`
 
 ## 🎯 实现细节
 
@@ -206,11 +204,11 @@ if (cssInsertPosition === 'head-start') {
 }
 ```
 
-## 🔄 向后兼容性
+## 🔄 Backward Compatibility
 
-- ✅ **默认值是 `'original'`** - 保留原始位置，最符合直觉
-- ✅ **如果不指定，行为改变** - 从"强制移到最前面"变为"保留原位置"
-- ⚠️ **轻微的破坏性变化** - 如果用户依赖旧的"移到最前面"行为，需要显式设置 `cssInsertPosition: 'head-start'`
+- ✅ Default `'original'` keeps original placement
+- ✅ If unspecified, behavior changes from "force to head start" to "keep original"
+- ⚠️ If you depended on the old behavior, set `cssInsertPosition: 'head-start'`
 
 ## 📝 TypeScript 类型
 
@@ -229,41 +227,41 @@ interface InlineAssetsOptions {
 }
 ```
 
-## 🧪 测试建议
+## 🧪 Testing Tips
 
 测试不同策略的效果：
 
 ```javascript
-// 测试 1: 验证 'original' 保留顺序
+// Test 1: Ensure 'original' preserves order
 const html1 = await inlineAssets({
   htmlPath: './index.html',
   cssInsertPosition: 'original'
 });
-// 验证 CSS 在原位置
+// Verify CSS is kept in place
 
-// 测试 2: 验证 'head-start' 移到最前
+// Test 2: Ensure 'head-start' moves to the beginning
 const html2 = await inlineAssets({
   htmlPath: './index.html',
   cssInsertPosition: 'head-start'
 });
-// 验证 CSS 在 <head> 之后第一个位置
+// Verify CSS is inserted at the start of <head>
 
-// 测试 3: 验证 'head-end' 移到最后
+// Test 3: Ensure 'head-end' moves to the end
 const html3 = await inlineAssets({
   htmlPath: './index.html',
   cssInsertPosition: 'head-end'
 });
-// 验证 CSS 在 </head> 之前
+// Verify CSS is inserted before </head>
 ```
 
-## 🎉 总结
+## 🎉 Summary
 
-这个功能解决了原始实现的主要问题：
+This feature addresses the main issues in the original approach:
 
-1. ✅ **默认保留顺序** - 尊重开发者意图
-2. ✅ **灵活可配置** - 三种策略满足不同需求
-3. ✅ **向后兼容** - 默认行为更合理
-4. ✅ **文档完善** - 清晰说明每种策略的优缺点
+1. ✅ Preserves order by default
+2. ✅ Flexible strategies for different needs
+3. ✅ Backward compatible sensible default
+4. ✅ Clear documentation of tradeoffs
 
-现在用户可以根据自己的需求选择最合适的策略！🚀
+Choose the approach that fits your scenario best! 🚀
 

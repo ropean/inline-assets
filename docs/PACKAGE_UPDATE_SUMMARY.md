@@ -1,47 +1,47 @@
 # Package Name Update Summary
 
-## ✅ 更新完成
+## ✅ Update Completed
 
-所有文件已成功更新为新的包名 `@ropean/inline-assets`
+All files have been updated to the new package name `@ropean/inline-assets`.
 
-## 📦 包信息
+## 📦 Package Info
 
-- **包名**: `@ropean/inline-assets`
-- **GitHub 仓库**: `ropean/inline-assets`
-- **npm 地址**: https://www.npmjs.com/package/@ropean/inline-assets
-- **GitHub 地址**: https://github.com/ropean/inline-assets
-- **协议**: MIT
-- **作者**: ropean
+- **Name**: `@ropean/inline-assets`
+- **GitHub Repo**: `ropean/inline-assets`
+- **npm**: https://www.npmjs.com/package/@ropean/inline-assets
+- **GitHub**: https://github.com/ropean/inline-assets
+- **License**: MIT
+- **Author**: ropean
 
-## 📝 已更新的文件
+## 📝 Files Updated
 
-### 核心文件
-- ✅ `package.json` - 包名、仓库URL、描述、关键词
-- ✅ `README.md` - 所有引用和示例代码
-- ✅ `LICENSE` - MIT 协议（已存在）
+### Core
+- ✅ `package.json` - name, repository URLs, description, keywords
+- ✅ `README.md` - all imports/usages
+- ✅ `LICENSE` - MIT (already present)
 
-### 示例文件 (examples/)
-- ✅ `vite-usage.js` - Vite 插件示例
-- ✅ `standalone-usage.js` - 独立函数示例
-- ✅ `webpack-integration.js` - Webpack 集成
-- ✅ `rollup-integration.js` - Rollup 集成
-- ✅ `gulp-integration.js` - Gulp 集成
-- ✅ `npm-script.js` - npm scripts 示例
-- ✅ `css-insert-position.js` - CSS 位置选项
-- ✅ `README.md` - 示例目录说明
+### Examples (examples/)
+- ✅ `vite-usage.js` - Vite plugin example
+- ✅ `standalone-usage.js` - Standalone example
+- ✅ `webpack-integration.js` - Webpack integration
+- ✅ `rollup-integration.js` - Rollup integration
+- ✅ `gulp-integration.js` - Gulp integration
+- ✅ `npm-script.js` - npm scripts example
+- ✅ `css-insert-position.js` - CSS insertion options
+- ✅ `README.md` - Examples overview
 
-### 文档文件 (docs/)
-- ✅ `PUBLISHING.md` - 发布指南
+### Docs (docs/)
+- ✅ `PUBLISHING.md` - Publishing guide
 
-## 🔄 主要变更
+## 🔄 Major Changes
 
-### 1. 包名变更
+### 1. Package Name
 ```diff
 - "name": "vite-plugin-inline"
 + "name": "@ropean/inline-assets"
 ```
 
-### 2. 导入语句变更
+### 2. Import Paths
 ```diff
 - import viteInlineAssets from 'vite-plugin-inline';
 + import inlineAssets from '@ropean/inline-assets';
@@ -50,21 +50,21 @@
 + import { inlineAssets } from '@ropean/inline-assets';
 ```
 
-### 3. 仓库 URL 变更
+### 3. Repository URLs
 ```diff
 - https://github.com/ropean/inline-assets
 + https://github.com/ropean/inline-assets
 ```
 
-### 4. npm 安装命令变更
+### 4. npm Install Command
 ```diff
 - npm install vite-plugin-inline -D
 + npm install @ropean/inline-assets -D
 ```
 
-## 🎯 关键词优化
+## 🎯 Keywords
 
-新增关键词以提高 SEO：
+Added keywords for better SEO:
 - `@ropean`
 - `inline-assets`
 - `@ropean/inline-assets`
@@ -87,7 +87,7 @@
 - `zero-dependency`
 - `bundler`
 
-## 📊 包描述优化
+## 📊 Description
 
 ```json
 {
@@ -95,14 +95,12 @@
 }
 ```
 
-强调：
-- ✅ 零依赖
-- ✅ 通用性（任何构建工具）
-- ✅ 双模式（Vite 插件 + 独立函数）
+Highlights:
+- ✅ Zero dependency
+- ✅ Works with any build tool
+- ✅ Dual mode (Vite plugin + standalone)
 
-## 🚀 发布准备
-
-### 发布前检查清单
+## 🚀 Publishing Checklist
 
 - [x] 更新所有文件中的包名
 - [x] 更新所有示例代码
@@ -114,47 +112,47 @@
 - [ ] 创建 git tag `v1.0.0`
 - [ ] 创建 GitHub Release
 
-### 发布命令
+### Commands
 
 ```bash
-# 1. 确保已登录 npm
+# 1. Ensure npm login
 npm whoami
 
-# 2. 最后检查
+# 2. Final checks
 npm run check
 
-# 3. 发布到 npm（scoped package 需要 --access public）
+# 3. Publish to npm (scoped packages require --access public)
 npm publish --access public
 
-# 4. 创建 git tag
+# 4. Create git tag
 git tag v1.0.0
 git push origin v1.0.0
 
-# 5. 在 GitHub 创建 Release
+# 5. Create GitHub Release
 ```
 
-## 📚 相关文档
+## 📚 References
 
-- [README.md](README.md) - 主文档
-- [PUBLISHING.md](docs/PUBLISHING.md) - 发布指南
-- [examples/README.md](examples/README.md) - 示例说明
+- [README.md](README.md) - Main docs
+- [PUBLISHING.md](docs/PUBLISHING.md) - Publishing guide
+- [examples/README.md](examples/README.md) - Examples
 
-## ✨ 新增功能
+## ✨ New Features
 
-在重构过程中添加的功能：
-- ✅ 零依赖 logger
-- ✅ 自定义 logger 接口
-- ✅ CSS 插入位置配置（`cssInsertPosition`）
-- ✅ 完整的 TypeScript 类型定义
-- ✅ 丰富的示例和文档
+Added during the refactor:
+- ✅ Zero-dependency logger
+- ✅ Custom logger interface
+- ✅ CSS insertion position (`cssInsertPosition`)
+- ✅ Full TypeScript definitions
+- ✅ Rich examples and docs
 
-## 🎉 准备就绪！
+## 🎉 Ready!
 
-所有文件已更新完毕，包已准备好发布到 npm！
+Everything is ready to publish to npm.
 
-下一步：
-1. 在 GitHub 创建仓库 `ropean/inline-assets`
-2. 推送代码
-3. 运行 `npm publish --access public`
-4. 享受你的零依赖内联资源工具！🚀
+Next:
+1. Create GitHub repo `ropean/inline-assets`
+2. Push code
+3. Run `npm publish --access public`
+4. Enjoy your zero-dependency inlining tool! 🚀
 
