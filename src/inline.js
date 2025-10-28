@@ -2,10 +2,10 @@
  * ============================================================================
  * Inline Assets - Core Logic
  * ============================================================================
- * 
+ *
  * Standalone function to inline CSS, JavaScript, and SVG assets into HTML.
  * Can be used independently or as part of a build tool plugin.
- * 
+ *
  * @author ropean
  * @license MIT
  */
@@ -36,11 +36,11 @@ import { createLogger } from './logger.js';
 
 /**
  * Check if a file path should be excluded from inlining
- * 
+ *
  * Supports two matching modes:
  * 1. Full path matching: 'assets/index.js' matches '/assets/index.js'
  * 2. Filename matching: 'index.js' matches any file named 'index.js'
- * 
+ *
  * @param {string} filePath - The file path to check (e.g., '/assets/index.js')
  * @param {string[]} excludes - Array of exclusion patterns
  * @returns {boolean} True if the file should be excluded from inlining
@@ -71,16 +71,16 @@ function isExcluded(filePath, excludes) {
 
 /**
  * Inline CSS, JavaScript, and SVG assets into an HTML file
- * 
+ *
  * @param {InlineAssetsOptions} options - Configuration options
  * @returns {Promise<{success: boolean, inlinedFiles: string[], errors: string[]}>} Result object
- * 
+ *
  * @example
  * // Basic usage
  * await inlineAssets({
  *   htmlPath: './dist/index.html'
  * });
- * 
+ *
  * @example
  * // Advanced usage with custom options
  * await inlineAssets({
@@ -112,9 +112,7 @@ export async function inlineAssets(options) {
   const errors = [];
 
   // Normalize SVG options
-  const svgOptions = typeof svg === 'boolean'
-    ? (svg ? { img: false, link: true } : { img: false, link: false })
-    : { img: false, link: true, ...svg };
+  const svgOptions = typeof svg === 'boolean' ? (svg ? { img: false, link: true } : { img: false, link: false }) : { img: false, link: true, ...svg };
 
   // Validate HTML file exists
   if (!fs.existsSync(htmlPath)) {
@@ -147,11 +145,11 @@ export async function inlineAssets(options) {
             try {
               const cssContent = fs.readFileSync(cssPath, 'utf-8');
               inlinedFiles.push(cssFile);
-              
+
               if (removeInlinedFiles) {
                 fs.unlinkSync(cssPath);
               }
-              
+
               logger.success(`Inlined CSS: ${logger.file(cssFile)}`);
               return `<style>\n${cssContent}</style>`;
             } catch (err) {
@@ -166,7 +164,7 @@ export async function inlineAssets(options) {
       } else {
         // Strategy 2: Collect all CSS and insert at specified position
         let inlinedStyles = '';
-        
+
         // Collect all CSS content from link tags
         html = html.replace(cssRegex, (match, cssFile) => {
           if (isExcluded(cssFile, excludes)) {
@@ -180,11 +178,11 @@ export async function inlineAssets(options) {
               const cssContent = fs.readFileSync(cssPath, 'utf-8');
               inlinedStyles += cssContent + '\n';
               inlinedFiles.push(cssFile);
-              
+
               if (removeInlinedFiles) {
                 fs.unlinkSync(cssPath);
               }
-              
+
               logger.success(`Inlined CSS: ${logger.file(cssFile)}`);
               return ''; // Remove the original link tag
             } catch (err) {
@@ -226,11 +224,11 @@ export async function inlineAssets(options) {
           try {
             const jsContent = fs.readFileSync(jsPath, 'utf-8');
             inlinedFiles.push(jsFile);
-            
+
             if (removeInlinedFiles) {
               fs.unlinkSync(jsPath);
             }
-            
+
             logger.success(`Inlined JS: ${logger.file(jsFile)}`);
             return `<script type="module">\n${jsContent}\n</script>`;
           } catch (err) {
@@ -261,11 +259,11 @@ export async function inlineAssets(options) {
             const svgContent = fs.readFileSync(svgPath, 'utf-8');
             const base64 = Buffer.from(svgContent).toString('base64');
             inlinedFiles.push(svgFile);
-            
+
             if (removeInlinedFiles) {
               fs.unlinkSync(svgPath);
             }
-            
+
             logger.success(`Inlined SVG (img): ${logger.file(svgFile)}`);
             return match.replace(/src=["'][^"']*["']/, `src="data:image/svg+xml;base64,${base64}"`);
           } catch (err) {
@@ -296,11 +294,11 @@ export async function inlineAssets(options) {
             const iconContent = fs.readFileSync(iconPath, 'utf-8');
             const base64 = Buffer.from(iconContent).toString('base64');
             inlinedFiles.push(iconFile);
-            
+
             if (removeInlinedFiles) {
               fs.unlinkSync(iconPath);
             }
-            
+
             logger.success(`Inlined SVG (link): ${logger.file(iconFile)}`);
             return `<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,${base64}" />`;
           } catch (err) {
@@ -330,8 +328,8 @@ export async function inlineAssets(options) {
       }
     }
 
-    logger.newline(1);
-    logger.success(`Inlining complete! ${inlinedFiles.length} file(s) processed`);
+    logger.info(`${inlinedFiles.length} file(s) processed`);
+    logger.success(`Inlining complete!`);
 
     return {
       success: errors.length === 0,
@@ -350,4 +348,3 @@ export async function inlineAssets(options) {
 }
 
 export default inlineAssets;
-
