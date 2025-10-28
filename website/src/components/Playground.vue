@@ -21,6 +21,10 @@
                   ]">
             {{ preset.name }}
           </button>
+          <button @click="resetPlayground"
+                  class="px-4 py-2 rounded-xl font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 transition-all">
+            Reset
+          </button>
         </div>
       </div>
       
@@ -64,10 +68,6 @@
                   :disabled="isProcessing"
                   class="px-8 py-3 bg-gradient-primary text-white rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
             {{ isProcessing ? 'Processing...' : '✨ Inline Assets' }}
-          </button>
-          <button @click="resetPlayground"
-                  class="px-6 py-3 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl font-medium hover:bg-slate-300 dark:hover:bg-slate-700 transition-all">
-            Reset
           </button>
         </div>
         
@@ -115,7 +115,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 // State
 const inputHtml = ref('')
@@ -333,6 +333,11 @@ function previewOutput() {
   const url = URL.createObjectURL(blob)
   window.open(url, '_blank')
 }
+
+// Load default preset on mount
+onMounted(() => {
+  loadPreset(presets[0])
+})
 </script>
 
 <style scoped>
