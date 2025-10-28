@@ -18,6 +18,9 @@ importers:
         specifier: ^3.5.22
         version: 3.5.22
     devDependencies:
+      '@ropean/inline-assets':
+        specifier: ^1.0.1
+        version: 1.0.1(vite@7.1.12(jiti@2.6.1)(lightningcss@1.30.2))
       '@tailwindcss/postcss':
         specifier: ^4.1.16
         version: 4.1.16
@@ -338,6 +341,15 @@ packages:
     resolution: {integrity: sha512-TAcgQh2sSkykPRWLrdyy2AiceMckNf5loITqXxFI5VuQjS5tSuw3WlwdN8qv8vzjLAUTvYaH/mVjSFpbkFbpTg==}
     cpu: [x64]
     os: [win32]
+
+  '@ropean/inline-assets@1.0.1':
+    resolution: {integrity: sha512-W0rLRH38oNAfinaeKqLBYjznMsILyQuXQ8nUMapetT3TpSEmRBNvo25Wxp43VdwSQ+c0NnWPTakFgM/4eeOASQ==}
+    engines: {node: '>=14.18.0'}
+    peerDependencies:
+      vite: '>=2.0.0'
+    peerDependenciesMeta:
+      vite:
+        optional: true
 
   '@tailwindcss/node@4.1.16':
     resolution: {integrity: sha512-BX5iaSsloNuvKNHRN3k2RcCuTEgASTo77mofW0vmeHkfrDWaoFAFvNHpEgtu0eqyypcyiBkDWzSMxJhp3AUVcw==}
@@ -848,6 +860,10 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.52.5':
     optional: true
+
+  '@ropean/inline-assets@1.0.1(vite@7.1.12(jiti@2.6.1)(lightningcss@1.30.2))':
+    optionalDependencies:
+      vite: 7.1.12(jiti@2.6.1)(lightningcss@1.30.2)
 
   '@tailwindcss/node@4.1.16':
     dependencies:

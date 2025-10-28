@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
         <a href="#hero" class="flex items-center group">
-          <img src="/logo-text.svg" alt="@ropean/inline-assets" class="h-10 transition-transform group-hover:scale-105" />
+          <div v-html="logoSvg" class="h-10 transition-transform group-hover:scale-105"></div>
         </a>
         
         <!-- Nav Links with sliding indicator -->
@@ -26,7 +26,7 @@
           </a>
           
           <!-- Sliding indicator -->
-          <div class="absolute bottom-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full pointer-events-none"
+          <div class="absolute bottom-0 h-0.5 bg-linear-to-r from-primary-500 to-secondary-500 rounded-full pointer-events-none"
                :class="{ 'transition-all duration-300 ease-out': hoverIndex >= 0 }"
                :style="{
                  left: `${(hoverIndex >= 0 ? hoverIndex : currentSection) * 118}px`,
@@ -75,6 +75,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import logoSvgContent from '@assets/logo-text.svg?raw'
 
 defineProps({
   isDark: Boolean
@@ -84,6 +85,7 @@ defineEmits(['toggle-theme'])
 
 const currentSection = ref(0)
 const hoverIndex = ref(-1)
+const logoSvg = logoSvgContent
 
 const navLinks = [
   { text: 'Home', href: '#hero' },

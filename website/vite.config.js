@@ -1,58 +1,62 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import tailwindcss from '@tailwindcss/postcss'
-import path from 'path'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import tailwindcss from '@tailwindcss/postcss';
+import path from 'path';
+import viteInlineAssets from '@ropean/inline-assets';
 
-export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/inline-assets/' : '/',
-  plugins: [vue()],
-  css: {
-    postcss: {
-      plugins: [tailwindcss],
+export default defineConfig(({ mode }) => {
+  const isDev = mode === 'development';
+
+  return {
+    base: './',
+    esbuild: {
+      pure: isDev ? [] : ['console.debug', 'console.error', 'console.log'],
     },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
-  build: {
-    outDir: '../dist-website-v2',
-    emptyOutDir: true,
-    chunkSizeWarningLimit: 1000,
-    cssCodeSplit: true,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
+    plugins: [
+      vue(),
+      viteInlineAssets({
+        htmlPath: './dist/index.html',
+        baseDir: './dist',
+        css: true,
+        js: true,
+        svg: { img: true, link: true },
+        cssInsertPosition: 'head-start',
+        removeInlinedFiles: true,
+        cleanupEmptyDirs: false,
+        logger: true,
+      }),
+    ],
+    css: {
+      postcss: {
+        plugins: [tailwindcss],
       },
     },
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vue-vendor': ['vue'],
-        },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: (assetInfo) => {
-          const info = assetInfo.name.split('.')
-          const ext = info[info.length - 1]
-          if (/\.(png|jpe?g|svg|gif|webp)$/i.test(assetInfo.name)) {
-            return `assets/images/[name]-[hash][extname]`
-          }
-          if (ext === 'css') {
-            return `assets/css/[name]-[hash][extname]`
-          }
-          return `assets/[name]-[hash][extname]`
-        },
+    resolve: {
+        alias: {
+          '@': path.resolve(__dirname, './src'),
+          '@assets': path.resolve(__dirname, './public/assets'),
       },
     },
-    sourcemap: false,
-    assetsInlineLimit: 4096,
-  },
-  optimizeDeps: {
-    include: ['vue'],
-  },
-}))
-
+    build: {
+      outDir: './dist',
+      minify: true,
+      emptyOutDir: true,
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          // manualChunks: {
+          //   'vue-vendor': ['vue'],
+          // },
+          // chunkFileNames: 'assets/js/[name].js',
+          // entryFileNames: 'assets/js/[name].js',
+          // assetFileNames: 'assets/[name].[ext]',
+        },
+      },
+      sourcemap: isDev,
+      assetsInlineLimit: 1000,
+    },
+    optimizeDeps: {
+      include: ['vue'],
+    },
+  };
+});
