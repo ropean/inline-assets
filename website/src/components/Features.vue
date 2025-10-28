@@ -1,16 +1,20 @@
 <template>
-  <section id="features" class="relative py-24 bg-linear-to-br from-slate-50 via-white to-primary-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgb(100 116 139) 1px, transparent 0); background-size: 40px 40px;"></div>
+  <section id="features" class="relative h-screen flex items-center bg-slate-950 overflow-hidden">
+    <!-- Animated Grid Background -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute inset-0" style="background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
     </div>
     
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Glowing Orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="text-center mb-16 animate-slide-up">
-        <h2 class="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mb-4">
+        <h2 class="text-4xl sm:text-5xl font-black text-white mb-4">
           Why Choose Inline Assets?
         </h2>
-        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
           Everything you need to create self-contained HTML files
         </p>
       </div>

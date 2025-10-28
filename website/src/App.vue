@@ -5,7 +5,6 @@
     <Features />
     <Playground />
     <QuickStart />
-    <Footer />
     <ScrollToTop />
   </div>
 </template>
@@ -17,7 +16,6 @@ import Hero from './components/Hero.vue'
 import Features from './components/Features.vue'
 import Playground from './components/Playground.vue'
 import QuickStart from './components/QuickStart.vue'
-import Footer from './components/Footer.vue'
 import ScrollToTop from './components/ScrollToTop.vue'
 
 const isDark = ref(false)

@@ -1,11 +1,21 @@
 <template>
-  <section id="playground" class="py-24 bg-slate-50 dark:bg-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mb-4">
+  <section id="playground" class="relative h-screen flex items-center bg-linear-to-br from-cyan-900 via-blue-900 to-indigo-900 overflow-hidden">
+    <!-- Animated Tech Lines -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(59, 130, 246, 0.5) 2px, rgba(59, 130, 246, 0.5) 4px), repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(59, 130, 246, 0.5) 2px, rgba(59, 130, 246, 0.5) 4px); background-size: 100px 100px;"></div>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="absolute top-1/3 left-1/3 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+    <div class="absolute top-2/3 right-1/3 w-2 h-2 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+    <div class="absolute bottom-1/3 left-2/3 w-2 h-2 bg-indigo-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="text-center mb-8">
+        <h2 class="text-4xl sm:text-5xl font-black text-white mb-4">
           Try It Live
         </h2>
-        <p class="text-xl text-slate-600 dark:text-slate-400 mb-8">
+        <p class="text-xl text-cyan-200 mb-6">
           See the magic happen in real-time
         </p>
         
@@ -28,27 +38,27 @@
         </div>
       </div>
       
-      <div class="space-y-6">
+      <div class="space-y-4">
         <!-- Input Section -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <!-- HTML Input -->
           <TerminalBlock title="HTML">
             <textarea v-model="inputHtml"
-                      class="w-full h-64 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-sm text-slate-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                      class="w-full h-40 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-xs text-slate-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                       placeholder="Enter your HTML..."></textarea>
           </TerminalBlock>
           
           <!-- CSS Input -->
           <TerminalBlock title="CSS">
             <textarea v-model="inputCss"
-                      class="w-full h-64 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-sm text-slate-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                      class="w-full h-40 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-xs text-slate-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                       placeholder="Enter your CSS..."></textarea>
           </TerminalBlock>
           
           <!-- JS Input -->
           <TerminalBlock title="JavaScript">
             <textarea v-model="inputJs"
-                      class="w-full h-64 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-sm text-slate-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                      class="w-full h-40 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-xs text-slate-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                       placeholder="Enter your JavaScript..."></textarea>
           </TerminalBlock>
         </div>
@@ -94,7 +104,7 @@
           </template>
           <textarea v-model="outputHtml"
                     readonly
-                    class="w-full h-96 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-sm text-slate-100 resize-none"
+                    class="w-full h-105 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-xs text-slate-100 resize-none"
                     placeholder="Inlined HTML will appear here..."></textarea>
         </TerminalBlock>
       </div>
