@@ -113,6 +113,7 @@ function launch() {
       setTimeout(() => {
         isLaunching.value = false
         launchProgress.value = 0
+        showScrollTop.value = false  
       }, 100)
     }
   }
@@ -127,7 +128,9 @@ function launch() {
 
 function handleScroll() {
   // Show rocket button after scrolling past first viewport
-  showScrollTop.value = window.scrollY > window.innerHeight
+  if (!isLaunching.value) {
+    showScrollTop.value = window.scrollY > window.innerHeight
+  }
 }
 
 onMounted(() => {
