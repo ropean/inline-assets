@@ -48,25 +48,19 @@
         <div class="mt-16 max-w-2xl mx-auto">
           <div class="relative group">
             <div class="absolute -inset-1 bg-linear-to-r from-primary-500 to-secondary-500 rounded-2xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity"></div>
-            <div class="relative card p-8 animate-scale-in">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="flex gap-1.5">
-                  <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                  <div class="w-3 h-3 rounded-full bg-green-400"></div>
+            <div class="relative animate-scale-in">
+              <TerminalBlock title="Terminal">
+                <div class="flex items-center justify-between bg-slate-900 dark:bg-slate-950 rounded-xl p-5 border border-slate-700">
+                  <div class="flex items-center gap-3 flex-1">
+                    <span class="text-green-400 font-mono text-sm">$</span>
+                    <code class="font-mono text-sm sm:text-base text-slate-100 flex-1">npm install @ropean/inline-assets -D</code>
+                  </div>
+                  <button @click="copyInstall" 
+                          class="ml-4 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all text-sm font-medium border border-slate-600 hover:border-slate-500">
+                    {{ copied ? '✓ Copied' : 'Copy' }}
+                  </button>
                 </div>
-                <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Terminal</span>
-              </div>
-              <div class="flex items-center justify-between bg-slate-900 dark:bg-slate-950 rounded-xl p-5 border border-slate-700">
-                <div class="flex items-center gap-3 flex-1">
-                  <span class="text-green-400 font-mono text-sm">$</span>
-                  <code class="font-mono text-sm sm:text-base text-slate-100 flex-1">npm install @ropean/inline-assets -D</code>
-                </div>
-                <button @click="copyInstall" 
-                        class="ml-4 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all text-sm font-medium border border-slate-600 hover:border-slate-500">
-                  {{ copied ? '✓ Copied' : 'Copy' }}
-                </button>
-              </div>
+              </TerminalBlock>
             </div>
           </div>
         </div>
@@ -77,6 +71,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import TerminalBlock from './TerminalBlock.vue'
 
 const copied = ref(false)
 

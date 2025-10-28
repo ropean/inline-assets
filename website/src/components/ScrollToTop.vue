@@ -30,8 +30,8 @@ const flameIcon = ref(null)
 const rocketStyle = computed(() => {
   if (!isLaunching.value) {
     return {
-      bottom: '2rem',
-      right: '2rem'
+      bottom: '3rem',
+      right: '0rem'
     }
   }
   
@@ -47,7 +47,7 @@ const rocketStyle = computed(() => {
   
   return {
     bottom: `${currentBottom}px`,
-    right: '2rem'
+    right: '0rem'
   }
 })
 
