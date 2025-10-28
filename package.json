@@ -24,9 +24,9 @@
     "test": "node test/test-standalone.js",
     "check": "node --check src/index.js && node --check src/logger.js && node --check src/inline.js && node --check src/vite-plugin.js",
     "prepublishOnly": "npm run check",
-    "dev": "npm --prefix website run dev",
-    "build": "npm --prefix website run build",
-    "preview": "npm --prefix website run preview"
+    "dev": "pnpm -C website dev",
+    "build": "pnpm -C website build",
+    "preview": "pnpm -C website preview"
   },
   "keywords": [
     "@ropean",
