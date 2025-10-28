@@ -60,7 +60,7 @@
   "bugs": {
     "url": "https://github.com/ropean/inline-assets/issues"
   },
-  "homepage": "https://github.com/ropean/inline-assets",
+  "homepage": "https://ia.ropean.org",
   "peerDependencies": {
     "vite": ">=2.0.0"
   },

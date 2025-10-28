@@ -34,7 +34,7 @@ Edit `package.json` and update:
   "bugs": {
     "url": "https://github.com/ropean/inline-assets/issues"
   },
-  "homepage": "https://github.com/ropean/inline-assets"
+  "homepage": "https://ia.ropean.org"
 }
 ```
 
