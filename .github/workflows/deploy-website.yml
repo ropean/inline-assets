@@ -2,38 +2,47 @@ name: Deploy Website
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - release
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
-      - name: Install root deps
-        run: npm ci
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
-      - name: Install website deps
-        working-directory: website
-        run: npm ci
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build website
-        run: npm run build:website
+        run: pnpm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist-website
-          force_orphan: true
+          publish_dir: ./website/dist
+          publish_branch: gh-pages
 
-
+      - name: Deployment summary
+        run: |
+          echo "## ✅ Website Deployed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Website**: https://ia.aceapp.dev/" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: gh-pages" >> $GITHUB_STEP_SUMMARY
+          echo "- **Source**: release branch" >> $GITHUB_STEP_SUMMARY
