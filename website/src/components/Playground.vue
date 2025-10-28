@@ -1,5 +1,5 @@
 <template>
-  <section id="playground" class="relative h-screen flex items-center bg-linear-to-br from-cyan-900 via-blue-900 to-indigo-900 overflow-hidden">
+  <section id="playground" class="relative min-h-screen bg-linear-to-br from-cyan-900 via-blue-900 to-indigo-900 overflow-hidden">
     <!-- Animated Tech Lines -->
     <div class="absolute inset-0 opacity-10">
       <div class="absolute inset-0" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(59, 130, 246, 0.5) 2px, rgba(59, 130, 246, 0.5) 4px), repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(59, 130, 246, 0.5) 2px, rgba(59, 130, 246, 0.5) 4px); background-size: 100px 100px;"></div>
@@ -10,7 +10,9 @@
     <div class="absolute top-2/3 right-1/3 w-2 h-2 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
     <div class="absolute bottom-1/3 left-2/3 w-2 h-2 bg-indigo-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
     
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <!-- Content Container - Centered Wrapper -->
+    <div class="relative min-h-screen flex items-center py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="text-center mb-8">
         <h2 class="text-4xl sm:text-5xl font-black text-white mb-4">
           Try It Live
@@ -19,22 +21,36 @@
           See the magic happen in real-time
         </p>
         
-        <!-- Preset Selector -->
-        <div class="flex items-center justify-center gap-3 flex-wrap">
-          <button v-for="preset in presets" :key="preset.name"
-                  @click="loadPreset(preset)"
-                  :class="[
-                    'px-4 py-2 rounded-xl font-medium transition-all',
-                    selectedPreset === preset.name
-                      ? 'bg-gradient-primary text-white shadow-lg'
-                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
-                  ]">
-            {{ preset.name }}
-          </button>
-          <button @click="resetPlayground"
-                  class="px-4 py-2 rounded-xl font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600 transition-all">
-            Reset
-          </button>
+        <!-- Preset Selector and Action Buttons -->
+        <div class="flex items-center justify-center gap-4 flex-wrap">
+          <!-- Preset Buttons Group -->
+          <div class="flex items-center gap-2 px-3 py-2 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-cyan-400/20">
+            <span class="text-xs font-semibold text-cyan-300 uppercase tracking-wider px-2">Presets:</span>
+            <button v-for="preset in presets" :key="preset.name"
+                    @click="loadPreset(preset)"
+                    :class="[
+                      'px-4 py-1.5 rounded-lg text-sm font-medium transition-all',
+                      selectedPreset === preset.name
+                        ? 'bg-cyan-500 text-white shadow-lg shadow-cyan-500/30'
+                        : 'bg-transparent text-cyan-100 hover:bg-cyan-500/20 hover:text-white'
+                    ]">
+              {{ preset.name }}
+            </button>
+          </div>
+          
+          <!-- Action Buttons Group -->
+          <div class="flex items-center gap-2 px-3 py-2 bg-white/10 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-purple-400/20">
+            <span class="text-xs font-semibold text-purple-300 uppercase tracking-wider px-2">Actions:</span>
+            <button @click="resetPlayground"
+                    class="px-5 py-2 rounded-lg font-medium text-sm bg-slate-400 hover:bg-slate-500 text-slate-900 hover:text-white transition-all shadow-sm hover:shadow-md hover:scale-105">
+              Reset
+            </button>
+            <button @click="processInline"
+                    :disabled="isProcessing"
+                    class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-sm shadow-md hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+              {{ isProcessing ? 'Processing...' : 'Inline Assets' }}
+            </button>
+          </div>
         </div>
       </div>
       
@@ -61,15 +77,6 @@
                       class="w-full h-40 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-xs text-slate-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                       placeholder="Enter your JavaScript..."></textarea>
           </TerminalBlock>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="flex items-center justify-center gap-4">
-          <button @click="processInline"
-                  :disabled="isProcessing"
-                  class="px-8 py-3 bg-gradient-primary text-white rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-            {{ isProcessing ? 'Processing...' : '✨ Inline Assets' }}
-          </button>
         </div>
         
         <!-- Error/Success Message -->
@@ -107,6 +114,7 @@
                     class="w-full h-105 p-4 bg-slate-900 dark:bg-slate-950 border border-slate-700 rounded-lg font-mono text-xs text-slate-100 resize-none"
                     placeholder="Inlined HTML will appear here..."></textarea>
         </TerminalBlock>
+      </div>
       </div>
     </div>
   </section>

@@ -90,12 +90,18 @@ body {
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 
-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+/* Enable scroll-snap only when viewport height is sufficient (>= 1100px) */
+@media (min-height: 1100px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }
 
 /* Custom Scrollbar */

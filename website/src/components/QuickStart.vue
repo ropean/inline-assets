@@ -1,5 +1,5 @@
 <template>
-  <section id="quick-start" class="relative h-screen flex items-center bg-linear-to-br from-emerald-900 via-teal-900 to-cyan-900 overflow-hidden">
+  <section id="quick-start" class="relative min-h-screen bg-linear-to-br from-emerald-900 via-teal-900 to-cyan-900 overflow-hidden">
     <!-- Animated Waves -->
     <div class="absolute inset-0 opacity-20">
       <svg class="absolute bottom-0 w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -17,8 +17,10 @@
     <div class="absolute top-3/4 left-1/4 w-1 h-1 bg-teal-400 rounded-full animate-pulse" style="animation-delay: 0.7s;"></div>
     <div class="absolute bottom-1/4 right-1/3 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style="animation-delay: 1.4s;"></div>
     
-    <div class="relative w-full flex flex-col h-full">
-      <div class="flex-1 flex items-center">
+    <!-- Content Wrapper with Flexbox Layout -->
+    <div class="relative min-h-screen flex flex-col">
+      <!-- Main Content - Centered -->
+      <div class="flex-1 flex items-center py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div class="text-center mb-8">
             <h2 class="text-4xl sm:text-5xl font-black text-white mb-4">
@@ -35,17 +37,15 @@
               <div class="relative">
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center">
-                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                      </svg>
-                    </div>
+                    <svg class="w-8 h-8 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
                       Vite Plugin
                     </h3>
                   </div>
                   <button @click="copyViteConfig"
-                          class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all text-sm font-medium border border-slate-600 hover:border-slate-500">
+                          class="px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-600 hover:text-slate-700 transition-all text-sm font-medium">
                     {{ copiedVite ? '✓ Copied' : 'Copy' }}
                   </button>
                 </div>
@@ -74,17 +74,15 @@ export default {
               <div class="relative">
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-linear-to-br from-secondary-400 to-secondary-600 flex items-center justify-center">
-                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                      </svg>
-                    </div>
+                    <svg class="w-8 h-8 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
                       Standalone Function
                     </h3>
                   </div>
                   <button @click="copyStandaloneConfig"
-                          class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all text-sm font-medium border border-slate-600 hover:border-slate-500">
+                          class="px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-600 hover:text-slate-700 transition-all text-sm font-medium">
                     {{ copiedStandalone ? '✓ Copied' : 'Copy' }}
                   </button>
                 </div>
@@ -110,8 +108,8 @@ await inlineAssets({
         </div>
       </div>
       
-      <!-- Footer -->
-      <footer class="relative bg-slate-950/50 backdrop-blur-sm border-t border-emerald-800/30 py-8">
+      <!-- Footer - Always at Bottom -->
+      <footer class="relative bg-slate-950/50 backdrop-blur-sm border-t border-emerald-800/30 py-8 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-col md:flex-row items-center justify-between">
             <div class="mb-4 md:mb-0">

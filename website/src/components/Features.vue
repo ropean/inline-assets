@@ -1,5 +1,5 @@
 <template>
-  <section id="features" class="relative h-screen flex items-center bg-slate-950 overflow-hidden">
+  <section id="features" class="relative min-h-screen flex items-center bg-slate-950 overflow-hidden">
     <!-- Animated Grid Background -->
     <div class="absolute inset-0 opacity-20">
       <div class="absolute inset-0" style="background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>

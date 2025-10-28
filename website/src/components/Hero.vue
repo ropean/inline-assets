@@ -1,5 +1,5 @@
 <template>
-  <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-500 via-purple-600 to-secondary-500">
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-primary-500 via-purple-600 to-secondary-500">
     <!-- Animated Background -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-white/10 rounded-full blur-3xl animate-float"></div>
