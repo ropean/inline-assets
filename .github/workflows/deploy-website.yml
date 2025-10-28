@@ -1,5 +1,4 @@
 name: Deploy Website
-
 on:
   push:
     branches:
@@ -9,41 +8,59 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
+      
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
-
+      
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
+      
       - name: Build website
         run: pnpm run build
-
-      - name: Deploy to GitHub Pages
+      
+      - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website/dist
           publish_branch: gh-pages
-
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./website/dist
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
       - name: Deployment summary
         run: |
           echo "## ✅ Website Deployed" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Website**: https://ia.aceapp.dev/" >> $GITHUB_STEP_SUMMARY
-          echo "- **Branch**: gh-pages" >> $GITHUB_STEP_SUMMARY
+          echo "- **Website**: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **gh-pages branch**: Updated ✓" >> $GITHUB_STEP_SUMMARY
+          echo "- **GitHub Pages**: Deployed ✓" >> $GITHUB_STEP_SUMMARY
           echo "- **Source**: release branch" >> $GITHUB_STEP_SUMMARY
