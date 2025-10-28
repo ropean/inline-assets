@@ -7,22 +7,31 @@
           <img src="/logo-text.svg" alt="@ropean/inline-assets" class="h-10 transition-transform group-hover:scale-105" />
         </a>
         
-        <!-- Nav Links with hover indicator -->
-        <div class="hidden md:flex items-center space-x-1 relative">
-          <a v-for="(link, index) in navLinks" :key="link.href" :href="link.href"
-             @mouseenter="activeNav = index"
-             @mouseleave="activeNav = -1"
-             class="relative px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors z-10">
+        <!-- Nav Links with sliding indicator -->
+        <div class="hidden md:flex items-center gap-2 relative">
+          <a v-for="(link, index) in navLinks" 
+             :key="link.href" 
+             :href="link.href"
+             @mouseenter="hoverIndex = index"
+             @mouseleave="hoverIndex = -1"
+             @click="handleNavClick(index)"
+             :class="[
+               'relative px-4 py-2 text-sm font-medium text-center transition-colors z-10',
+               currentSection === index 
+                 ? 'text-primary-600 dark:text-primary-400' 
+                 : 'text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400'
+             ]"
+             style="width: 110px;">
             {{ link.text }}
           </a>
-          <!-- Sliding glass background -->
-          <div v-if="activeNav >= 0"
-               class="absolute glass rounded-xl border border-slate-200/50 dark:border-slate-700/50 shadow-lg transition-all duration-300 ease-out"
+          
+          <!-- Sliding indicator -->
+          <div class="absolute bottom-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full pointer-events-none"
+               :class="{ 'transition-all duration-300 ease-out': hoverIndex >= 0 }"
                :style="{
-                 left: `${activeNav * 88}px`,
-                 width: '88px',
-                 height: '40px',
-                 top: '0'
+                 left: `${(hoverIndex >= 0 ? hoverIndex : currentSection) * 118}px`,
+                 width: '110px',
+                 opacity: (hoverIndex >= 0 || currentSection >= 0) ? 1 : 0
                }">
           </div>
         </div>
@@ -65,7 +74,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 defineProps({
   isDark: Boolean
@@ -73,7 +82,8 @@ defineProps({
 
 defineEmits(['toggle-theme'])
 
-const activeNav = ref(-1)
+const currentSection = ref(0)
+const hoverIndex = ref(-1)
 
 const navLinks = [
   { text: 'Home', href: '#hero' },
@@ -81,5 +91,34 @@ const navLinks = [
   { text: 'Playground', href: '#playground' },
   { text: 'Quick Start', href: '#quick-start' },
 ]
+
+// Handle navigation click
+function handleNavClick(index) {
+  currentSection.value = index
+  // Don't reset hoverIndex here - let mouseleave handle it naturally
+}
+
+// Detect current section based on scroll position
+function updateActiveSection() {
+  const sections = ['hero', 'features', 'playground', 'quick-start']
+  const scrollPosition = window.scrollY + window.innerHeight / 3
+  
+  for (let i = sections.length - 1; i >= 0; i--) {
+    const section = document.getElementById(sections[i])
+    if (section && section.offsetTop <= scrollPosition) {
+      currentSection.value = i
+      break
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', updateActiveSection)
+  updateActiveSection() // Initial check - sets to Home (0)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateActiveSection)
+})
 </script>
 
