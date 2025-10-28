@@ -131,70 +131,335 @@ const presets = [
   {
     name: 'Basic Example',
     html: `<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inline Assets Demo</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello World</h1>
-  <p class="highlight">This is a test</p>
+  <div class="container">
+    <div class="badge">✨ New</div>
+    <h1 class="title">Welcome to Inline Assets</h1>
+    <p class="description">Transform your HTML into self-contained files with zero dependencies</p>
+    <div class="features">
+      <div class="feature">🚀 Fast</div>
+      <div class="feature">💎 Beautiful</div>
+      <div class="feature">🎯 Simple</div>
+    </div>
+  </div>
   <script src="script.js"><\/script>
 </body>
 </html>`,
-    css: `body {
-  font-family: Arial, sans-serif;
-  margin: 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+    css: `* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.highlight {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.container {
+  text-align: center;
+  max-width: 600px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.badge {
+  display: inline-block;
   background: rgba(255, 255, 255, 0.2);
-  padding: 10px;
-  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.features {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.feature {
+  background: white;
+  color: #667eea;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }`,
-    js: `console.log('Hello from inline-assets!');
+    js: `console.log('🎉 Inline Assets Demo Loaded!');
+
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('h1').style.animation = 'fadeIn 1s';
+  const features = document.querySelectorAll('.feature');
+  
+  features.forEach((feature, index) => {
+    feature.style.animationDelay = \`\${index * 0.1}s\`;
+    feature.style.animation = 'fadeInUp 0.6s ease-out forwards';
+  });
 });`
   },
   {
     name: 'Card Design',
     html: `<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Card</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="card">
-    <h2>Feature Card</h2>
-    <p>Beautiful card with gradient background</p>
-    <button onclick="handleClick()">Click Me</button>
+    <div class="card-header">
+      <div class="icon">🎨</div>
+      <span class="status">Premium</span>
+    </div>
+    <h2 class="card-title">Design System Pro</h2>
+    <p class="card-description">A complete design system with 500+ components, templates, and resources for modern web applications.</p>
+    <div class="card-stats">
+      <div class="stat">
+        <div class="stat-value">500+</div>
+        <div class="stat-label">Components</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">50k+</div>
+        <div class="stat-label">Downloads</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">4.9</div>
+        <div class="stat-label">Rating</div>
+      </div>
+    </div>
+    <button class="btn" id="actionBtn">
+      <span class="btn-text">Get Started</span>
+      <span class="btn-icon">→</span>
+    </button>
   </div>
   <script src="script.js"><\/script>
 </body>
 </html>`,
-    css: `.card {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 30px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    css: `* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-button {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  padding: 20px;
+}
+
+.card {
+  max-width: 420px;
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.6s ease-out;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.status {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.card-description {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.card-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 28px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 16px;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #667eea;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.btn {
+  width: 100%;
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 10px;
+  padding: 16px 24px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }`,
-    js: `function handleClick() {
-  alert('Button clicked!');
-}`
+    js: `console.log('🎨 Card Design Demo Loaded!');
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('actionBtn');
+  const stats = document.querySelectorAll('.stat');
+  
+  // Animate stats on load
+  stats.forEach((stat, index) => {
+    stat.style.opacity = '0';
+    stat.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+      stat.style.transition = 'all 0.5s ease';
+      stat.style.opacity = '1';
+      stat.style.transform = 'translateY(0)';
+    }, 300 + index * 100);
+  });
+  
+  // Button click effect
+  btn.addEventListener('click', () => {
+    btn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      btn.style.transform = '';
+    }, 150);
+    
+    console.log('✨ Button clicked! Ready to get started!');
+  });
+});`
   },
   {
     name: 'Animation',
