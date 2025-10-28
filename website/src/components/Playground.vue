@@ -241,6 +241,11 @@ function loadPreset(preset) {
   inputJs.value = preset.js
   outputHtml.value = ''
   playgroundMessage.value = null
+  
+  // Automatically process after loading preset
+  setTimeout(() => {
+    processInline()
+  }, 100)
 }
 
 function resetPlayground() {

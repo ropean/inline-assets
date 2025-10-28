@@ -1,5 +1,5 @@
 <template>
-  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-500 via-purple-600 to-secondary-500">
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-primary-500 via-purple-600 to-secondary-500">
     <!-- Animated Background -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-white/10 rounded-full blur-3xl animate-float"></div>
@@ -8,9 +8,19 @@
     
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
       <div class="animate-slide-down">
-        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-8">
-          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-          <span>Zero Dependencies • Production Ready</span>
+        <div class="inline-flex items-center space-x-4 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-8">
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+            <span>Zero Dependencies</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Production Ready</span>
+          </div>
         </div>
         
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
@@ -37,7 +47,7 @@
         <!-- Installation Command -->
         <div class="mt-16 max-w-2xl mx-auto">
           <div class="relative group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity"></div>
+            <div class="absolute -inset-1 bg-linear-to-r from-primary-500 to-secondary-500 rounded-2xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity"></div>
             <div class="relative card p-8 animate-scale-in">
               <div class="flex items-center gap-3 mb-4">
                 <div class="flex gap-1.5">

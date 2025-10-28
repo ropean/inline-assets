@@ -1,5 +1,5 @@
 <template>
-  <section id="features" class="relative py-24 bg-gradient-to-br from-slate-50 via-white to-primary-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden">
+  <section id="features" class="relative py-24 bg-linear-to-br from-slate-50 via-white to-primary-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-5">
       <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgb(100 116 139) 1px, transparent 0); background-size: 40px 40px;"></div>
@@ -46,7 +46,7 @@ const features = [
     icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
     title: 'Zero Dependencies',
     description: 'No external packages. Lightweight, secure, and easy to maintain.',
-    iconBg: 'bg-gradient-to-br from-yellow-400 to-orange-500',
+    iconBg: 'bg-linear-to-br from-yellow-400 to-orange-500',
     iconColor: 'text-white',
     bgClass: 'bg-yellow-400',
     className: 'border-l-4 border-yellow-400'
@@ -55,7 +55,7 @@ const features = [
     icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>',
     title: 'Dual Mode',
     description: 'Use as a Vite plugin or standalone function with any build tool.',
-    iconBg: 'bg-gradient-to-br from-blue-400 to-cyan-500',
+    iconBg: 'bg-linear-to-br from-blue-400 to-cyan-500',
     iconColor: 'text-white',
     bgClass: 'bg-blue-400',
     className: 'border-l-4 border-blue-400'
@@ -64,7 +64,7 @@ const features = [
     icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>',
     title: 'Single File Output',
     description: 'Combine all assets into one HTML file for easy deployment.',
-    iconBg: 'bg-gradient-to-br from-green-400 to-emerald-500',
+    iconBg: 'bg-linear-to-br from-green-400 to-emerald-500',
     iconColor: 'text-white',
     bgClass: 'bg-green-400',
     className: 'border-l-4 border-green-400'
@@ -73,7 +73,7 @@ const features = [
     icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>',
     title: 'Inline Everything',
     description: 'CSS, JavaScript, SVG - all assets inlined automatically.',
-    iconBg: 'bg-gradient-to-br from-purple-400 to-pink-500',
+    iconBg: 'bg-linear-to-br from-purple-400 to-pink-500',
     iconColor: 'text-white',
     bgClass: 'bg-purple-400',
     className: 'border-l-4 border-purple-400'
@@ -82,7 +82,7 @@ const features = [
     icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>',
     title: 'Highly Configurable',
     description: 'Control CSS position, exclusions, logging, and more.',
-    iconBg: 'bg-gradient-to-br from-red-400 to-rose-500',
+    iconBg: 'bg-linear-to-br from-red-400 to-rose-500',
     iconColor: 'text-white',
     bgClass: 'bg-red-400',
     className: 'border-l-4 border-red-400'
@@ -91,7 +91,7 @@ const features = [
     icon: '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>',
     title: 'Production Ready',
     description: 'Battle-tested and used in production by many projects.',
-    iconBg: 'bg-gradient-to-br from-indigo-400 to-primary-500',
+    iconBg: 'bg-linear-to-br from-indigo-400 to-primary-500',
     iconColor: 'text-white',
     bgClass: 'bg-indigo-400',
     className: 'border-l-4 border-indigo-400'

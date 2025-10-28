@@ -15,7 +15,7 @@
           <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500 rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
           <div class="relative">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-primary-400 to-primary-600 flex items-center justify-center">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
@@ -24,18 +24,20 @@
                 Vite Plugin
               </h3>
             </div>
-            <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-6 rounded-xl overflow-x-auto border border-slate-700 h-64"><code class="text-sm font-mono leading-relaxed">import inlineAssets from '@ropean/inline-assets';
+            <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-6 rounded-xl overflow-x-auto border border-slate-700 h-120"><code class="text-sm font-mono leading-relaxed">import viteInlineAssets from '@ropean/inline-assets';
 
 export default {
   plugins: [
-    inlineAssets({
+    viteInlineAssets({
+      htmlPath: './dist/index.html',
+      baseDir: './dist',
       css: true,
       js: true,
       svg: { img: false, link: true },
-      excludes: ['analytics.js'],
       cssInsertPosition: 'original',
-      // distDir: 'dist',
-      // htmlFileName: 'index.html'
+      removeInlinedFiles: true,
+      cleanupEmptyDirs: true,
+      logger: true
     })
   ]
 }</code></pre>
@@ -46,7 +48,7 @@ export default {
           <div class="absolute top-0 right-0 w-32 h-32 bg-secondary-500 rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
           <div class="relative">
             <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-secondary-400 to-secondary-600 flex items-center justify-center">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-secondary-400 to-secondary-600 flex items-center justify-center">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                 </svg>
@@ -55,7 +57,7 @@ export default {
                 Standalone Function
               </h3>
             </div>
-            <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-6 rounded-xl overflow-x-auto border border-slate-700 h-64"><code class="text-sm font-mono leading-relaxed">import { inlineAssets } from '@ropean/inline-assets';
+            <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-6 rounded-xl overflow-x-auto border border-slate-700 h-120"><code class="text-sm font-mono leading-relaxed">import { inlineAssets } from '@ropean/inline-assets';
 
 await inlineAssets({
   htmlPath: './dist/index.html',
@@ -63,9 +65,13 @@ await inlineAssets({
   css: true,
   js: true,
   svg: { img: false, link: true },
-  excludes: ['vendor.js'],
-  // removeInlinedFiles: true,
-  // cleanupEmptyDirs: true
+  excludes: [
+    'vendor.js',
+  ],
+  cssInsertPosition: 'original',
+  removeInlinedFiles: true,
+  cleanupEmptyDirs: true,
+  logger: true
 });</code></pre>
           </div>
         </div>
