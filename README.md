@@ -1,6 +1,7 @@
 # @ropean/inline-assets
 
-
+[![Deploy Website](https://github.com/ropean/inline-assets/actions/workflows/deploy-website.yml/badge.svg)](https://github.com/ropean/inline-assets/actions/workflows/deploy-website.yml)
+[![Live Site](https://img.shields.io/badge/ia.ropean.org-purple)](https://ia.ropean.org)
 [![license](https://img.shields.io/npm/l/@ropean/inline-assets.svg)](https://github.com/ropean/inline-assets/blob/main/LICENSE)
 [![npm version](https://img.shields.io/npm/v/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
 [![downloads](https://img.shields.io/npm/dm/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
@@ -48,9 +49,9 @@ export default defineConfig({
       css: true,
       js: true,
       svg: { img: false, link: true },
-      excludes: ['assets/large-file.js']
-    })
-  ]
+      excludes: ['assets/large-file.js'],
+    }),
+  ],
 });
 ```
 
@@ -66,7 +67,7 @@ await inlineAssets({
   htmlPath: './dist/index.html',
   css: true,
   js: true,
-  svg: { img: true, link: true }
+  svg: { img: true, link: true },
 });
 ```
 
@@ -84,13 +85,13 @@ const myLogger = {
 
 await inlineAssets({
   htmlPath: './dist/index.html',
-  logger: myLogger
+  logger: myLogger,
 });
 
 // Or disable logging completely
 await inlineAssets({
   htmlPath: './dist/index.html',
-  logger: false
+  logger: false,
 });
 ```
 
@@ -102,28 +103,30 @@ await inlineAssets({
 interface VitePluginOptions {
   /** Whether to inline CSS files (default: true) */
   css?: boolean;
-  
+
   /** Whether to inline JavaScript files (default: true) */
   js?: boolean;
-  
+
   /** SVG inlining options (default: { img: false, link: true }) */
-  svg?: boolean | {
-    img?: boolean;  // Inline SVG in <img> tags
-    link?: boolean; // Inline SVG in <link> tags (favicon)
-  };
-  
+  svg?:
+    | boolean
+    | {
+        img?: boolean; // Inline SVG in <img> tags
+        link?: boolean; // Inline SVG in <link> tags (favicon)
+      };
+
   /** File patterns to exclude from inlining (default: []) */
   excludes?: string[];
-  
+
   /** Distribution directory name (default: 'dist') */
   distDir?: string;
-  
+
   /** HTML file name to process (default: 'index.html') */
   htmlFileName?: string;
-  
+
   /** Where to insert inlined CSS (default: 'original') */
   cssInsertPosition?: 'original' | 'head-start' | 'head-end';
-  
+
   /** Custom logger or false to disable (default: built-in logger) */
   logger?: LoggerInterface | false;
 }
@@ -135,34 +138,36 @@ interface VitePluginOptions {
 interface InlineAssetsOptions {
   /** Path to the HTML file to process (required) */
   htmlPath: string;
-  
+
   /** Base directory for resolving asset paths (default: HTML file's directory) */
   baseDir?: string;
-  
+
   /** Whether to inline CSS files (default: true) */
   css?: boolean;
-  
+
   /** Whether to inline JavaScript files (default: true) */
   js?: boolean;
-  
+
   /** SVG inlining options (default: true) */
-  svg?: boolean | {
-    img?: boolean;
-    link?: boolean;
-  };
-  
+  svg?:
+    | boolean
+    | {
+        img?: boolean;
+        link?: boolean;
+      };
+
   /** File patterns to exclude from inlining (default: []) */
   excludes?: string[];
-  
+
   /** Whether to delete inlined asset files (default: true) */
   removeInlinedFiles?: boolean;
-  
+
   /** Whether to remove empty directories (default: true) */
   cleanupEmptyDirs?: boolean;
-  
+
   /** Where to insert inlined CSS (default: 'original') */
   cssInsertPosition?: 'original' | 'head-start' | 'head-end';
-  
+
   /** Custom logger or false to disable (default: built-in logger) */
   logger?: LoggerInterface | false;
 }
@@ -178,9 +183,9 @@ interface LoggerInterface {
   success(message: string): void;
   warning(message: string): void;
   error(message: string): void;
-  event?(message: string): void;      // Optional
-  file?(path: string): string;        // Optional
-  newline?(count?: number): void;     // Optional
+  event?(message: string): void; // Optional
+  file?(path: string): string; // Optional
+  newline?(count?: number): void; // Optional
 }
 ```
 
@@ -190,18 +195,20 @@ Control where inlined CSS is placed in your HTML:
 
 ```javascript
 inlineAssets({
-  cssInsertPosition: 'original'  // Default: keep CSS at original <link> position
-})
+  cssInsertPosition: 'original', // Default: keep CSS at original <link> position
+});
 ```
 
 ### Available Options:
 
 - **`'original'`** (default) - Keeps CSS at the original `<link>` tag position
+
   - ✅ Preserves the order of CSS and JS
   - ✅ CSS appears before JS if that's how you structured it
   - ⚠️ May create multiple `<style>` tags if you have multiple CSS files
 
 - **`'head-start'`** - Moves all CSS to the beginning of `<head>`
+
   - ✅ Optimal for performance (CSS loads first)
   - ✅ Single merged `<style>` tag
   - ⚠️ Changes the original order
@@ -215,13 +222,13 @@ inlineAssets({
 ```javascript
 // Keep CSS before JS (preserves order)
 inlineAssets({
-  cssInsertPosition: 'original'
-})
+  cssInsertPosition: 'original',
+});
 
 // Optimize for performance (CSS at top)
 inlineAssets({
-  cssInsertPosition: 'head-start'
-})
+  cssInsertPosition: 'head-start',
+});
 ```
 
 ## 🎯 Exclusion Patterns
@@ -231,11 +238,11 @@ Exclude specific files from inlining:
 ```javascript
 inlineAssets({
   excludes: [
-    'index.js',           // Matches any file named 'index.js'
-    'assets/vendor.js',   // Matches 'assets/vendor.js' specifically
-    'large-image.svg'     // Matches any file named 'large-image.svg'
-  ]
-})
+    'index.js', // Matches any file named 'index.js'
+    'assets/vendor.js', // Matches 'assets/vendor.js' specifically
+    'large-image.svg', // Matches any file named 'large-image.svg'
+  ],
+});
 ```
 
 ## 🔧 How It Works
@@ -258,6 +265,7 @@ inlineAssets({
 ## 📊 Example Output
 
 **Before** (3 files):
+
 ```
 dist/
 ├── index.html
@@ -267,6 +275,7 @@ dist/
 ```
 
 **After** (1 file):
+
 ```
 dist/
 └── index.html  (with inlined CSS and JS)
@@ -294,13 +303,15 @@ See the [`examples/`](examples/) directory for complete, runnable examples:
 const { inlineAssets } = require('@ropean/inline-assets');
 
 module.exports = {
-  plugins: [{
-    apply: (compiler) => {
-      compiler.hooks.done.tap('InlineAssets', async () => {
-        await inlineAssets({ htmlPath: './dist/index.html' });
-      });
-    }
-  }]
+  plugins: [
+    {
+      apply: (compiler) => {
+        compiler.hooks.done.tap('InlineAssets', async () => {
+          await inlineAssets({ htmlPath: './dist/index.html' });
+        });
+      },
+    },
+  ],
 };
 ```
 
@@ -316,12 +327,14 @@ module.exports = {
 import { inlineAssets } from '@ropean/inline-assets';
 
 export default {
-  plugins: [{
-    name: 'inline-assets',
-    closeBundle: async () => {
-      await inlineAssets({ htmlPath: './dist/index.html' });
-    }
-  }]
+  plugins: [
+    {
+      name: 'inline-assets',
+      closeBundle: async () => {
+        await inlineAssets({ htmlPath: './dist/index.html' });
+      },
+    },
+  ],
 };
 ```
 
@@ -346,7 +359,7 @@ export default {
 import { inlineAssets } from '@ropean/inline-assets';
 
 const result = await inlineAssets({
-  htmlPath: './dist/index.html'
+  htmlPath: './dist/index.html',
 });
 
 if (!result.success) {
@@ -403,4 +416,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📮 Issues
 
 Found a bug or have a feature request? [Open an issue](https://github.com/ropean/inline-assets/issues)
-
