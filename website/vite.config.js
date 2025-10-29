@@ -12,16 +12,20 @@ export default defineConfig(({ mode }) => {
     esbuild: {
       pure: isDev ? [] : ['console.debug', 'console.error', 'console.log'],
     },
+    server: {
+      port: 5172,
+      host: true,
+    },
     plugins: [
       vue(),
       viteInlineAssets({
         htmlPath: './dist/index.html',
         baseDir: './dist',
-        css: true,
-        js: true,
+        css: false,
+        js: false,
         svg: { img: true, link: true },
         cssInsertPosition: 'head-start',
-        removeInlinedFiles: true,
+        removeInlinedFiles: false,
         cleanupEmptyDirs: false,
         logger: true,
       }),
@@ -32,9 +36,9 @@ export default defineConfig(({ mode }) => {
       },
     },
     resolve: {
-        alias: {
-          '@': path.resolve(__dirname, './src'),
-          '@assets': path.resolve(__dirname, './public/assets'),
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        '@assets': path.resolve(__dirname, './public/assets'),
       },
     },
     build: {
@@ -44,12 +48,9 @@ export default defineConfig(({ mode }) => {
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
-          // manualChunks: {
-          //   'vue-vendor': ['vue'],
-          // },
-          // chunkFileNames: 'assets/js/[name].js',
-          // entryFileNames: 'assets/js/[name].js',
-          // assetFileNames: 'assets/[name].[ext]',
+          chunkFileNames: 'assets/[name].js',
+          entryFileNames: 'assets/[name].js',
+          assetFileNames: 'assets/[name].[ext]',
         },
       },
       sourcemap: isDev,
