@@ -41,6 +41,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: inline-assets
           directory: ./website/dist
+          environment: production
           gitHubToken: '' # disable github pages
 
       - name: Deployment summary
