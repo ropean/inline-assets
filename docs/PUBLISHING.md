@@ -26,7 +26,7 @@ Edit `package.json` and update:
 ```json
 {
   "name": "@ropean/inline-assets",
-  "version": "1.0.0",  // Update version as needed
+  "version": "1.0.0", // Update version as needed
   "repository": {
     "type": "git",
     "url": "https://github.com/ropean/inline-assets.git"
@@ -34,7 +34,7 @@ Edit `package.json` and update:
   "bugs": {
     "url": "https://github.com/ropean/inline-assets/issues"
   },
-  "homepage": "https://ia.ropean.org"
+  "homepage": "https://inline-assets.ropean.org"
 }
 ```
 
@@ -64,6 +64,7 @@ npm pack --dry-run
 ```
 
 This shows all files that will be included. Verify:
+
 - ✅ `src/` directory is included
 - ✅ `README.md` is included
 - ✅ `LICENSE` is included
@@ -141,6 +142,7 @@ git push --tags
 ### "Package name already exists"
 
 The package name `@ropean/inline-assets` is already registered to you. If you need to change it:
+
 - Choose another name under your scope: `@ropean/another-name`
 - Or use a different scope if you have one
 
@@ -186,4 +188,3 @@ npm info @ropean/inline-assets downloads
 - [Semantic Versioning](https://semver.org/)
 - [Keep a Changelog](https://keepachangelog.com/)
 - [npm Package Best Practices](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
-
