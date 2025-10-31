@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/postcss';
 import path from 'path';
 import viteInlineAssets from '@ropean/inline-assets';
+import mkcert from 'vite-plugin-mkcert';
 
 export default defineConfig(({ mode }) => {
   const isDev = mode === 'development';
@@ -17,6 +18,7 @@ export default defineConfig(({ mode }) => {
       host: true,
     },
     plugins: [
+      mkcert(),
       vue(),
       viteInlineAssets({
         htmlPath: './dist/index.html',
