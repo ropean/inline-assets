@@ -1,4 +1,4 @@
-name: Deploy Website to Cloudflare
+name: Deploy Website
 on:
   push:
     branches:
@@ -41,7 +41,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: inline-assets
           directory: ./website/dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          gitHubToken: '' # disable github pages
 
       - name: Deployment summary
         run: |
