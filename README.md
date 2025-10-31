@@ -1,6 +1,6 @@
 # @ropean/inline-assets
 
-[![Deploy Website](https://github.com/ropean/inline-assets/actions/workflows/deploy-website-cloudflare.yml/badge.svg)](https://github.com/ropean/inline-assets/actions/workflows/deploy-website-cloudflare.yml)
+[![Deploy Website](https://github.com/ropean/inline-assets/actions/workflows/deploy-to-cloudflare.yml/badge.svg)](https://github.com/ropean/inline-assets/actions/workflows/deploy-to-cloudflare.yml)
 [![Live Site](https://img.shields.io/badge/live-ia.ropean.org-purple)](https://inline-assets.ropean.org)
 [![license](https://img.shields.io/npm/l/@ropean/inline-assets.svg)](https://github.com/ropean/inline-assets/blob/main/LICENSE)
 [![npm version](https://img.shields.io/npm/v/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)

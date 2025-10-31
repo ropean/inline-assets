@@ -83,7 +83,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./website/dist --project-name=${{ steps.project.outputs.project }} --branch main
+          command: pages deploy ./dist --project-name=${{ steps.project.outputs.project }} --branch ${{ github.ref_name }}
 
       - name: Deployment summary
         run: |
@@ -92,5 +92,6 @@ jobs:
 
           - 🚀 Deployment completed!
           - 🔧 Environment: ${{ steps.env.outputs.environment }}
+          - 🌿 Branch: ${{ github.ref_name }}
           - 🌐 Domain: https://${{ steps.project.outputs.domain }}
           EOF
