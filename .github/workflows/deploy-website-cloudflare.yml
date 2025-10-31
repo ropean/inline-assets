@@ -38,7 +38,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -52,7 +51,7 @@ jobs:
         run: pnpm run build
 
       - name: Install Wrangler
-        run: npm install -g wrangler
+        run: pnpm install -g wrangler
 
       - name: Determine environment
         id: env
@@ -84,7 +83,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./website/dist --project-name=${{ steps.project.outputs.project }} --branch main
+          command: wrangler pages deploy ./website/dist --project-name=${{ steps.project.outputs.project }} --branch main
 
       - name: Deployment summary
         run: |
