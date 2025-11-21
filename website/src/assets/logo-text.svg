@@ -72,7 +72,7 @@
     </circle>
   </g>
   
-  <!-- Text: @aceapp/inline - much larger -->
+  <!-- Text: @ropean/inline-assets - much larger -->
   <g transform="translate(48, 30)">
     <!-- @aceapp part -->
     <text x="0" y="0" font-family="'SF Pro Display', 'Segoe UI', system-ui, sans-serif"

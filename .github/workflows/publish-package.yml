@@ -3,11 +3,11 @@ name: Publish NPM Package
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Version tag (e.g., v1.0.2)'
+        description: "Version tag (e.g., v1.0.3)"
         required: true
         type: string
 
@@ -27,8 +27,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -46,7 +46,7 @@ jobs:
 
           # Validate tag format (must start with 'v' followed by version number)
           if [[ ! $TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Error: Tag must be in format v*.*.* (e.g., v1.0.2)"
+            echo "Error: Tag must be in format v*.*.* (e.g., v1.0.3)"
             exit 1
           fi
 

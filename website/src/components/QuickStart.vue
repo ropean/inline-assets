@@ -49,7 +49,7 @@
                     {{ copiedVite ? '✓ Copied' : 'Copy' }}
                   </button>
                 </div>
-                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import viteInlineAssets from '@aceapp/inline';
+                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import viteInlineAssets from '@ropean/inline-assets';
 
 export default {
   plugins: [
@@ -86,7 +86,7 @@ export default {
                     {{ copiedStandalone ? '✓ Copied' : 'Copy' }}
                   </button>
                 </div>
-                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import { inlineAssets } from '@aceapp/inline';
+                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import { inlineAssets } from '@ropean/inline-assets';
 
 await inlineAssets({
   htmlPath: './dist/index.html',
