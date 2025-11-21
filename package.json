@@ -59,8 +59,8 @@
     "prepublishOnly": "npm run check",
     "preview": "pnpm -C website preview",
     "test": "node test/test-standalone.js",
-    "deploy": "wrangler pages deploy ./website/dist --project-name=inline-assets --branch main",
-    "deploy:ci": "wrangler pages deploy ./website/dist --project-name=inline-assets-ci --branch main"
+    "ship": "wrangler pages deploy ./website/dist --project-name=inline-assets --branch main",
+    "ship:ci": "wrangler pages deploy ./website/dist --project-name=inline-assets-ci --branch main"
   },
   "peerDependencies": {
     "vite": ">=2.0.0"
