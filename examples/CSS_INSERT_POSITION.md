@@ -11,13 +11,13 @@ Previously, all inlined CSS was forced to the beginning of `<head>`, which cause
 ### Original Behavior
 
 ```javascript
-// 旧代码：强制插入到 <head> 最前面
+// Old code: force insert at the beginning of <head>
 html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
 ```
 
 This resulted in:
 ```html
-<!-- 原始 HTML -->
+<!-- Original HTML -->
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
@@ -50,7 +50,7 @@ Cons:
 
 Example:
 ```html
-<!-- 原始 HTML -->
+<!-- Original HTML -->
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
@@ -76,18 +76,18 @@ Pros:
 Cons:
 - ⚠️ Changes original order
 
-**示例：**
+**Example:**
 ```html
-<!-- 原始 HTML -->
+<!-- Original HTML -->
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
 </head>
 
-<!-- 内联后 -->
+<!-- After inlining -->
 <head>
-  <style>/* 所有 CSS 合并 */</style>  ← 移到最前面
+  <style>/* All CSS merged */</style>  ← moved to the beginning
   <meta charset="UTF-8">
   <script type="module">/* JS */</script>
 </head>
@@ -95,7 +95,7 @@ Cons:
 
 ### 3. `'head-end'` - Move to end of `<head>`
 
-**行为：** 收集所有 CSS，合并后插入到 `</head>` 标签之前
+**Behavior:** Collect all CSS, merge and insert before the `</head>` tag
 
 Pros:
 - ✅ Single merged `<style>` tag
@@ -104,26 +104,26 @@ Pros:
 Cons:
 - ⚠️ CSS after JS (may affect rendering)
 
-**示例：**
+**Example:**
 ```html
-<!-- 原始 HTML -->
+<!-- Original HTML -->
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
 </head>
 
-<!-- 内联后 -->
+<!-- After inlining -->
 <head>
   <meta charset="UTF-8">
   <script type="module">/* JS */</script>
-  <style>/* 所有 CSS 合并 */</style>  ← 移到最后
+  <style>/* All CSS merged */</style>  ← moved to the end
 </head>
 ```
 
 ## 🔧 Usage
 
-### 作为 Vite 插件
+### As Vite Plugin
 
 ```javascript
 import inlineAssets from '@ropean/inline-assets';
@@ -175,28 +175,28 @@ await inlineAssets({
 - ✅ Meta/title should load first
 - ✅ Single merged `<style>`
 
-## 🎯 实现细节
+## 🎯 Implementation Details
 
-### 策略 1: `'original'` - 就地替换
+### Strategy 1: `'original'` - In-place Replacement
 
 ```javascript
 html = html.replace(cssRegex, (match, cssFile) => {
   const cssContent = fs.readFileSync(cssPath, 'utf-8');
-  return `<style>\n${cssContent}</style>`;  // 直接替换
+  return `<style>\n${cssContent}</style>`;  // Direct replacement
 });
 ```
 
-### 策略 2/3: `'head-start'` / `'head-end'` - 收集并插入
+### Strategy 2/3: `'head-start'` / `'head-end'` - Collect and Insert
 
 ```javascript
-// 1. 收集所有 CSS
+// 1. Collect all CSS
 let inlinedStyles = '';
 html = html.replace(cssRegex, (match, cssFile) => {
   inlinedStyles += fs.readFileSync(cssPath, 'utf-8') + '\n';
-  return '';  // 移除原标签
+  return '';  // Remove original tag
 });
 
-// 2. 插入到指定位置
+// 2. Insert at specified position
 if (cssInsertPosition === 'head-start') {
   html = html.replace('<head>', `<head>\n  <style>\n${inlinedStyles}  </style>`);
 } else if (cssInsertPosition === 'head-end') {
@@ -210,12 +210,12 @@ if (cssInsertPosition === 'head-start') {
 - ✅ If unspecified, behavior changes from "force to head start" to "keep original"
 - ⚠️ If you depended on the old behavior, set `cssInsertPosition: 'head-start'`
 
-## 📝 TypeScript 类型
+## 📝 TypeScript Types
 
 ```typescript
 interface InlineAssetsOptions {
-  // ... 其他选项
-  
+  // ... other options
+
   /**
    * Where to insert inlined CSS
    * - 'original': Keep CSS at the original <link> tag position (preserves order)
@@ -229,7 +229,7 @@ interface InlineAssetsOptions {
 
 ## 🧪 Testing Tips
 
-测试不同策略的效果：
+Testing different strategies:
 
 ```javascript
 // Test 1: Ensure 'original' preserves order

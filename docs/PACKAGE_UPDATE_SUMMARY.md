@@ -102,15 +102,15 @@ Highlights:
 
 ## 🚀 Publishing Checklist
 
-- [x] 更新所有文件中的包名
-- [x] 更新所有示例代码
-- [x] 更新文档链接
-- [x] 语法检查通过 (`npm run check`)
-- [ ] 创建 GitHub 仓库 `ropean/inline-assets`
-- [ ] 推送代码到 GitHub
-- [ ] 运行 `npm publish --access public`
-- [ ] 创建 git tag `v1.0.0`
-- [ ] 创建 GitHub Release
+- [x] Update package name in all files
+- [x] Update all example code
+- [x] Update documentation links
+- [x] Syntax check passed (`npm run check`)
+- [ ] Create GitHub repository `ropean/inline-assets`
+- [ ] Push code to GitHub
+- [ ] Run `npm publish --access public`
+- [ ] Create git tag `v1.0.0`
+- [ ] Create GitHub Release
 
 ### Commands
 
