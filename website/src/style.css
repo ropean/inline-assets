@@ -1,21 +1,21 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Custom Colors */
-  --color-primary-50: #f5f7ff;
-  --color-primary-100: #ebf0ff;
-  --color-primary-200: #d6e0ff;
-  --color-primary-300: #b8c9ff;
-  --color-primary-400: #94a8ff;
-  --color-primary-500: #667eea;
-  --color-primary-600: #5568d3;
-  --color-primary-700: #4451b8;
-  --color-primary-800: #353d94;
-  --color-primary-900: #2a3075;
+  /* Custom Colors - Modern Cyan/Blue Theme */
+  --color-primary-50: #ecfeff;
+  --color-primary-100: #cffafe;
+  --color-primary-200: #a5f3fc;
+  --color-primary-300: #67e8f9;
+  --color-primary-400: #22d3ee;
+  --color-primary-500: #06b6d4;
+  --color-primary-600: #0891b2;
+  --color-primary-700: #0e7490;
+  --color-primary-800: #155e75;
+  --color-primary-900: #164e63;
 
-  --color-secondary-500: #764ba2;
-  --color-secondary-600: #653d8a;
-  --color-secondary-700: #543072;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
 
   /* Custom Animations */
   --animate-fade-in: fadeIn 0.5s ease-in-out;
@@ -144,6 +144,11 @@ html {
 
 .bg-gradient-primary {
   background-image: linear-gradient(to bottom right, var(--color-primary-500), var(--color-secondary-500));
+}
+
+/* Modern gradient utilities */
+.bg-gradient-modern {
+  background-image: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #14b8a6 100%);
 }
 
 .glass {

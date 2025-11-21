@@ -1,10 +1,41 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200/50 dark:border-slate-800/50">
+  <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-gradient-shimmer">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <a href="#hero" class="flex items-center group">
-          <div v-html="logoSvg" class="h-8 sm:h-10 transition-transform group-hover:scale-105"></div>
+        <!-- Modern Logo Design -->
+        <a href="#hero" class="flex items-center group relative">
+          <!-- Brand Icon with Layers -->
+          <div class="relative flex items-center gap-3">
+            <!-- Icon: Stacked Layers representing "inline" -->
+            <div class="relative w-10 h-10 flex items-center justify-center">
+              <!-- Background glow on hover -->
+              <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"></div>
+
+              <!-- Three stacked rectangles with animation -->
+              <div class="relative w-8 h-8">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-md transform -translate-y-1 -translate-x-1 opacity-60 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-md group-hover:scale-105 transition-all duration-300"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-blue-700 rounded-md transform translate-y-1 translate-x-1 opacity-60 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"></div>
+
+                <!-- Code brackets symbol -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white relative z-10 drop-shadow-lg group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brand Text -->
+            <div class="flex flex-col -space-y-1">
+              <span class="text-lg sm:text-xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent group-hover:from-cyan-500 group-hover:to-blue-500 transition-all">
+                inline
+              </span>
+              <span class="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-400 tracking-wider group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                ASSETS
+              </span>
+            </div>
+          </div>
         </a>
 
         <!-- Nav Links with sliding indicator (Desktop) -->
@@ -18,15 +49,15 @@
              :class="[
                'relative px-4 py-2 text-sm font-medium text-center transition-colors z-10',
                currentSection === index
-                 ? 'text-primary-600 dark:text-primary-400'
-                 : 'text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400'
+                 ? 'text-cyan-600 dark:text-cyan-400'
+                 : 'text-slate-600 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400'
              ]"
              style="width: 110px;">
             {{ link.text }}
           </a>
 
           <!-- Sliding indicator -->
-          <div class="absolute bottom-0 h-0.5 bg-linear-to-r from-primary-500 to-secondary-500 rounded-full pointer-events-none"
+          <div class="absolute bottom-0 h-0.5 bg-linear-to-r from-cyan-500 via-blue-500 to-teal-500 rounded-full pointer-events-none shadow-[0_0_8px_rgba(6,182,212,0.6)]"
                :class="{ 'transition-all duration-300 ease-out': hoverIndex >= 0 }"
                :style="{
                  left: `${(hoverIndex >= 0 ? hoverIndex : currentSection) * 118}px`,
@@ -93,7 +124,7 @@
                :class="[
                  'px-4 py-3 rounded-xl text-base font-medium transition-colors',
                  currentSection === index
-                   ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
+                   ? 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400'
                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                ]">
               {{ link.text }}
@@ -178,6 +209,17 @@ onUnmounted(() => {
 .mobile-menu-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+/* Shimmer border effect */
+.border-gradient-shimmer {
+  border-image: linear-gradient(90deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2), rgba(20, 184, 166, 0.2)) 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .border-gradient-shimmer {
+    border-image: linear-gradient(90deg, rgba(6, 182, 212, 0.3), rgba(59, 130, 246, 0.3), rgba(20, 184, 166, 0.3)) 1;
+  }
 }
 </style>
 
