@@ -75,7 +75,7 @@ jobs:
             echo "domain=inline-assets-ci.aceapp.dev" >> $GITHUB_OUTPUT
           else
             echo "project=inline-assets" >> $GITHUB_OUTPUT
-            echo "domain=inline.ropean.org" >> $GITHUB_OUTPUT
+            echo "domain=inline.aceapp.dev" >> $GITHUB_OUTPUT
           fi
 
       - name: Deploy to Cloudflare Pages
