@@ -1,13 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#667eea" />
-      <stop offset="100%" stop-color="#764ba2" />
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="12" fill="url(#g)" />
-  <g fill="#fff" font-family="Verdana,'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="900"
-    letter-spacing="0">
-    <text x="4" y="48" font-size="40" style=" font-weight: bold; text-transform: uppercase;">IA</text>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Single centered layer -->
+  <rect x="6" y="6" width="108" height="108" rx="12" fill="url(#gradient)" />
+
+  <!-- Code symbol - perfectly centered -->
+  <g transform="translate(60, 60)">
+    <!-- Left angle bracket < -->
+    <path d="M -18 -30 L -36 0 L -18 30"
+          stroke="white"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#shadow)"/>
+
+    <!-- Slash / -->
+    <path d="M -6 30 L 6 -30"
+          stroke="white"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#shadow)"/>
+
+    <!-- Right angle bracket > -->
+    <path d="M 18 -30 L 36 0 L 18 30"
+          stroke="white"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"
+          filter="url(#shadow)"/>
   </g>
+
+  <!-- Gradient -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Drop shadow for code symbol -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-opacity="0.6"/>
+    </filter>
+  </defs>
 </svg>
