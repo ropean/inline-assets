@@ -1,0 +1,33 @@
+{
+  "name": "@aceapp/scroll-to-top",
+  "version": "1.0.0",
+  "description": "A lightweight, zero-dependency scroll-to-top button with rocket animation",
+  "main": "scroll-to-top.js",
+  "scripts": {
+    "build": "node build.js",
+    "demo": "node -e \"require('http').createServer((req, res) => { const fs = require('fs'); if (req.url === '/') { res.writeHead(200, {'Content-Type': 'text/html'}); fs.createReadStream('demo.html').pipe(res); } else if (req.url === '/scroll-to-top.js') { res.writeHead(200, {'Content-Type': 'application/javascript'}); fs.createReadStream('scroll-to-top.js').pipe(res); } }).listen(8080, () => console.log('Demo server running at http://localhost:8080'))\""
+  },
+  "keywords": [
+    "scroll-to-top",
+    "scroll",
+    "button",
+    "rocket",
+    "animation",
+    "ui",
+    "component",
+    "vanilla-js",
+    "zero-dependency"
+  ],
+  "author": "AceApp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ropean/inline-assets.git",
+    "directory": "standalone-component"
+  },
+  "files": [
+    "scroll-to-top.js",
+    "dist/",
+    "README.md"
+  ]
+}

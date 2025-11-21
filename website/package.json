@@ -1,5 +1,5 @@
 {
-  "name": "@ropean/inline-assets-v2",
+  "name": "@aceapp/inline-website",
   "version": "2.0.0",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
     "vue": "^3.5.22"
   },
   "devDependencies": {
-    "@ropean/inline-assets": "^1.0.1",
+    "@aceapp/inline": "^1.0.2",
     "@tailwindcss/postcss": "^4.1.16",
     "@vitejs/plugin-vue": "^6.0.1",
     "tailwindcss": "^4.1.16",

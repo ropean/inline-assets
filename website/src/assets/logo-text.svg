@@ -72,25 +72,25 @@
     </circle>
   </g>
   
-  <!-- Text: @ropean/inline-assets - much larger -->
+  <!-- Text: @aceapp/inline - much larger -->
   <g transform="translate(48, 30)">
-    <!-- @ropean part -->
-    <text x="0" y="0" font-family="'SF Pro Display', 'Segoe UI', system-ui, sans-serif" 
+    <!-- @aceapp part -->
+    <text x="0" y="0" font-family="'SF Pro Display', 'Segoe UI', system-ui, sans-serif"
           font-size="26" font-weight="700" fill="url(#textGradient)" filter="url(#glow)">
-      @ropean
+      @aceapp
       <animate attributeName="opacity" values="1;0.85;1" dur="3s" repeatCount="indefinite" />
     </text>
-    
+
     <!-- Separator - more visible with better spacing -->
-    <text x="114" y="0" font-family="'SF Pro Display', 'Segoe UI', system-ui, sans-serif" 
+    <text x="114" y="0" font-family="'SF Pro Display', 'Segoe UI', system-ui, sans-serif"
           font-size="26" font-weight="400" fill="url(#textGradient)" opacity="0.7">
       /
     </text>
-    
-    <!-- inline-assets part -->
-    <text x="130" y="0" font-family="'SF Pro Display', 'Segoe UI', system-ui, sans-serif" 
+
+    <!-- inline part -->
+    <text x="130" y="0" font-family="'SF Pro Display', 'Segoe UI', system-ui, sans-serif"
           font-size="26" font-weight="600" fill="url(#textGradient)" filter="url(#glow)">
-      inline-assets
+      inline
       <animate attributeName="opacity" values="1;0.85;1" dur="3s" begin="0.5s" repeatCount="indefinite" />
     </text>
   </g>

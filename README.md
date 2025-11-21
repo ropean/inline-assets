@@ -1,10 +1,10 @@
-# @ropean/inline-assets
+# @aceapp/inline
 
 [![Deploy Website](https://github.com/ropean/inline-assets/actions/workflows/deploy-to-cloudflare.yml/badge.svg)](https://github.com/ropean/inline-assets/actions/workflows/deploy-to-cloudflare.yml)
-[![Live Site](https://img.shields.io/badge/live-ia.ropean.org-purple)](https://inline-assets.ropean.org)
-[![license](https://img.shields.io/npm/l/@ropean/inline-assets.svg)](https://github.com/ropean/inline-assets/blob/main/LICENSE)
-[![npm version](https://img.shields.io/npm/v/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
-[![downloads](https://img.shields.io/npm/dm/@ropean/inline-assets.svg)](https://www.npmjs.com/package/@ropean/inline-assets)
+[![Live Site](https://img.shields.io/badge/live-inline.aceapp.dev-purple)](https://inline.aceapp.dev)
+[![license](https://img.shields.io/npm/l/@aceapp/inline.svg)](https://github.com/ropean/inline-assets/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@aceapp/inline.svg)](https://www.npmjs.com/package/@aceapp/inline)
+[![downloads](https://img.shields.io/npm/dm/@aceapp/inline.svg)](https://www.npmjs.com/package/@aceapp/inline)
 
 A **zero-dependency** Vite plugin and standalone utility to inline CSS, JavaScript, and SVG assets into HTML for single-file deployment.
 
@@ -23,15 +23,15 @@ A **zero-dependency** Vite plugin and standalone utility to inline CSS, JavaScri
 ## 📦 Installation
 
 ```bash
-npm install @ropean/inline-assets -D
+npm install @aceapp/inline -D
 ```
 
 ```bash
-yarn add @ropean/inline-assets -D
+yarn add @aceapp/inline -D
 ```
 
 ```bash
-pnpm add @ropean/inline-assets -D
+pnpm add @aceapp/inline -D
 ```
 
 ## 🚀 Usage
@@ -41,7 +41,7 @@ pnpm add @ropean/inline-assets -D
 ```typescript
 // vite.config.ts
 import { defineConfig } from 'vite';
-import inlineAssets from '@ropean/inline-assets';
+import inlineAssets from '@aceapp/inline';
 
 export default defineConfig({
   plugins: [
@@ -60,7 +60,7 @@ export default defineConfig({
 Perfect for use with **any build tool** (Webpack, Rollup, esbuild, etc.):
 
 ```javascript
-import { inlineAssets } from '@ropean/inline-assets';
+import { inlineAssets } from '@aceapp/inline';
 
 // After your build process
 await inlineAssets({
@@ -74,7 +74,7 @@ await inlineAssets({
 ### With Custom Logger
 
 ```javascript
-import { inlineAssets } from '@ropean/inline-assets';
+import { inlineAssets } from '@aceapp/inline';
 
 const myLogger = {
   info: (msg) => console.log('[INFO]', msg),
@@ -300,7 +300,7 @@ See the [`examples/`](examples/) directory for complete, runnable examples:
 
 ```javascript
 // webpack.config.js
-const { inlineAssets } = require('@ropean/inline-assets');
+const { inlineAssets } = require('@aceapp/inline');
 
 module.exports = {
   plugins: [
@@ -324,7 +324,7 @@ module.exports = {
 
 ```javascript
 // rollup.config.js
-import { inlineAssets } from '@ropean/inline-assets';
+import { inlineAssets } from '@aceapp/inline';
 
 export default {
   plugins: [
@@ -356,7 +356,7 @@ export default {
 
 ```javascript
 // inline-assets.js
-import { inlineAssets } from '@ropean/inline-assets';
+import { inlineAssets } from '@aceapp/inline';
 
 const result = await inlineAssets({
   htmlPath: './dist/index.html',
@@ -377,7 +377,7 @@ if (!result.success) {
 
 ```javascript
 // gulpfile.js
-import { inlineAssets } from '@ropean/inline-assets';
+import { inlineAssets } from '@aceapp/inline';
 import gulp from 'gulp';
 
 gulp.task('inline', async () => {

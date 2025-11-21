@@ -49,7 +49,7 @@
                     {{ copiedVite ? '✓ Copied' : 'Copy' }}
                   </button>
                 </div>
-                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import viteInlineAssets from '@ropean/inline-assets';
+                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import viteInlineAssets from '@aceapp/inline';
 
 export default {
   plugins: [
@@ -86,7 +86,7 @@ export default {
                     {{ copiedStandalone ? '✓ Copied' : 'Copy' }}
                   </button>
                 </div>
-                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import { inlineAssets } from '@ropean/inline-assets';
+                <pre class="bg-slate-900 dark:bg-slate-950 text-slate-100 p-4 rounded-xl overflow-x-auto border border-slate-700 max-h-80overflow-y-auto"><code class="text-xs font-mono leading-relaxed">import { inlineAssets } from '@aceapp/inline';
 
 await inlineAssets({
   htmlPath: './dist/index.html',
@@ -114,7 +114,7 @@ await inlineAssets({
           <div class="flex flex-col md:flex-row items-center justify-between">
             <div class="mb-4 md:mb-0">
               <p class="text-emerald-300/60 text-sm">
-                MIT © 2025 <a href="https://ropean.org" class="text-emerald-300/80 hover:text-emerald-200 transition-colors  decoration-emerald-800 decoration-dotted ">ropean</a>
+                MIT © 2025 <a href="https://aceapp.dev" class="text-emerald-300/80 hover:text-emerald-200 transition-colors  decoration-emerald-800 decoration-dotted ">AceApp</a>
               </p>
             </div>
             <div class="flex items-center space-x-6">
