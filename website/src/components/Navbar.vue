@@ -4,27 +4,27 @@
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
         <a href="#hero" class="flex items-center group">
-          <div v-html="logoSvg" class="h-10 transition-transform group-hover:scale-105"></div>
+          <div v-html="logoSvg" class="h-8 sm:h-10 transition-transform group-hover:scale-105"></div>
         </a>
-        
-        <!-- Nav Links with sliding indicator -->
+
+        <!-- Nav Links with sliding indicator (Desktop) -->
         <div class="hidden md:flex items-center gap-2 relative">
-          <a v-for="(link, index) in navLinks" 
-             :key="link.href" 
+          <a v-for="(link, index) in navLinks"
+             :key="link.href"
              :href="link.href"
              @mouseenter="hoverIndex = index"
              @mouseleave="hoverIndex = -1"
              @click="handleNavClick(index)"
              :class="[
                'relative px-4 py-2 text-sm font-medium text-center transition-colors z-10',
-               currentSection === index 
-                 ? 'text-primary-600 dark:text-primary-400' 
+               currentSection === index
+                 ? 'text-primary-600 dark:text-primary-400'
                  : 'text-slate-600 dark:text-slate-300 hover:text-primary-500 dark:hover:text-primary-400'
              ]"
              style="width: 110px;">
             {{ link.text }}
           </a>
-          
+
           <!-- Sliding indicator -->
           <div class="absolute bottom-0 h-0.5 bg-linear-to-r from-primary-500 to-secondary-500 rounded-full pointer-events-none"
                :class="{ 'transition-all duration-300 ease-out': hoverIndex >= 0 }"
@@ -35,9 +35,9 @@
                }">
           </div>
         </div>
-        
+
         <!-- Actions -->
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2 sm:space-x-3">
           <!-- GitHub Link -->
           <a href="https://github.com/ropean/inline-assets" target="_blank" rel="noopener noreferrer"
              class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors group"
@@ -67,8 +67,40 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
             </svg>
           </button>
+
+          <!-- Mobile Menu Button -->
+          <button @click="mobileMenuOpen = !mobileMenuOpen"
+                  class="md:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors"
+                  title="Menu">
+            <svg v-if="!mobileMenuOpen" class="w-6 h-6 text-slate-700 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg v-else class="w-6 h-6 text-slate-700 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
         </div>
       </div>
+
+      <!-- Mobile Menu -->
+      <transition name="mobile-menu">
+        <div v-if="mobileMenuOpen" class="md:hidden py-4 border-t border-slate-200/50 dark:border-slate-800/50">
+          <div class="flex flex-col space-y-2">
+            <a v-for="(link, index) in navLinks"
+               :key="link.href"
+               :href="link.href"
+               @click="handleMobileNavClick(index)"
+               :class="[
+                 'px-4 py-3 rounded-xl text-base font-medium transition-colors',
+                 currentSection === index
+                   ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
+                   : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+               ]">
+              {{ link.text }}
+            </a>
+          </div>
+        </div>
+      </transition>
     </div>
   </nav>
 </template>
@@ -85,6 +117,7 @@ defineEmits(['toggle-theme'])
 
 const currentSection = ref(0)
 const hoverIndex = ref(-1)
+const mobileMenuOpen = ref(false)
 const logoSvg = logoSvgContent
 
 const navLinks = [
@@ -98,6 +131,12 @@ const navLinks = [
 function handleNavClick(index) {
   currentSection.value = index
   // Don't reset hoverIndex here - let mouseleave handle it naturally
+}
+
+// Handle mobile navigation click
+function handleMobileNavClick(index) {
+  currentSection.value = index
+  mobileMenuOpen.value = false
 }
 
 // Detect current section based on scroll position
@@ -123,4 +162,22 @@ onUnmounted(() => {
   window.removeEventListener('scroll', updateActiveSection)
 })
 </script>
+
+<style scoped>
+/* Mobile menu transition */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.mobile-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+</style>
 

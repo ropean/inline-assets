@@ -53,7 +53,7 @@
                 <div class="flex items-center justify-between bg-slate-900 dark:bg-slate-950 rounded-xl p-5 border border-slate-700">
                   <div class="flex items-center gap-3 flex-1">
                     <span class="text-green-400 font-mono text-sm">$</span>
-                    <code class="font-mono text-sm sm:text-base text-slate-100 flex-1">npm install @ropean/inline-assets -D</code>
+                    <code class="font-mono text-sm sm:text-base text-slate-100 flex-1">npm install @aceapp/inline -D</code>
                   </div>
                   <button @click="copyInstall" 
                           class="ml-4 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-all text-sm font-medium border border-slate-600 hover:border-slate-500">
@@ -76,7 +76,7 @@ import TerminalBlock from './TerminalBlock.vue'
 const copied = ref(false)
 
 function copyInstall() {
-  navigator.clipboard.writeText('npm install @ropean/inline-assets -D')
+  navigator.clipboard.writeText('npm install @aceapp/inline -D')
   copied.value = true
   setTimeout(() => { copied.value = false }, 2000)
 }
